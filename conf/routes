@@ -18,3 +18,5 @@ POST /paciente                 controllers.PacienteController.create()
 
 #Dar pacientes
 GET /paciente                   controllers.PacienteController.read()
+
+
