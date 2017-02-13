@@ -3,6 +3,11 @@
 
 # --- !Ups
 
+create table historial_medico (
+  id                        bigint auto_increment not null,
+  constraint pk_historial_medico primary key (id))
+;
+
 create table medico (
   id                        bigint auto_increment not null,
   nombre                    varchar(255),
@@ -38,6 +43,8 @@ create table urgencia (
 # --- !Downs
 
 SET REFERENTIAL_INTEGRITY FALSE;
+
+drop table if exists historial_medico;
 
 drop table if exists medico;
 
