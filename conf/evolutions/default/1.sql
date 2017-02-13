@@ -10,6 +10,14 @@ create table medico (
   constraint pk_medico primary key (id))
 ;
 
+create table medico_especialista (
+  id                        bigint auto_increment not null,
+  nombre                    varchar(255),
+  apellido                  varchar(255),
+  especialidad              varchar(255),
+  constraint pk_medico_especialista primary key (id))
+;
+
 create table paciente (
   id                        bigint auto_increment not null,
   nombre                    varchar(255),
@@ -25,6 +33,8 @@ create table paciente (
 SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists medico;
+
+drop table if exists medico_especialista;
 
 drop table if exists paciente;
 
