@@ -3,6 +3,13 @@
 
 # --- !Ups
 
+create table medico (
+  id                        bigint auto_increment not null,
+  nombre                    varchar(255),
+  apellido                  varchar(255),
+  constraint pk_medico primary key (id))
+;
+
 create table paciente (
   id                        bigint auto_increment not null,
   nombre                    varchar(255),
@@ -16,6 +23,8 @@ create table paciente (
 # --- !Downs
 
 SET REFERENTIAL_INTEGRITY FALSE;
+
+drop table if exists medico;
 
 drop table if exists paciente;
 

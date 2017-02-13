@@ -34,6 +34,27 @@ public class Paciente extends Model
         this.nombre = pNombre;
         this.apellido = pApellido;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public static Paciente bind(JsonNode j) {
         String nombre = j.findPath("nombre").asText();
         String apellido = j.findPath("apellido").asText();
