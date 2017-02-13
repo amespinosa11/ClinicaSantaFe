@@ -25,6 +25,13 @@ create table paciente (
   constraint pk_paciente primary key (id))
 ;
 
+create table urgencia (
+  id                        bigint auto_increment not null,
+  fecha                     timestamp,
+  descripcion               varchar(255),
+  constraint pk_urgencia primary key (id))
+;
+
 
 
 
@@ -37,6 +44,8 @@ drop table if exists medico;
 drop table if exists medico_especialista;
 
 drop table if exists paciente;
+
+drop table if exists urgencia;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
