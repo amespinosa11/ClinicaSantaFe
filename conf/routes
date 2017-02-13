@@ -20,3 +20,6 @@ POST /paciente                 controllers.PacienteController.create()
 GET /paciente                   controllers.PacienteController.read()
 
 
+
+
+

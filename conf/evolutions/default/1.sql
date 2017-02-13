@@ -3,6 +3,13 @@
 
 # --- !Ups
 
+create table diagnostico (
+  id                        bigint auto_increment not null,
+  fecha_expedicion          timestamp,
+  descripcion               varchar(255),
+  constraint pk_diagnostico primary key (id))
+;
+
 create table historial_medico (
   id                        bigint auto_increment not null,
   constraint pk_historial_medico primary key (id))
@@ -30,6 +37,13 @@ create table paciente (
   constraint pk_paciente primary key (id))
 ;
 
+create table registro (
+  id                        bigint auto_increment not null,
+  fecha_expedicion          timestamp,
+  frecuencia_cardiaca       bigint,
+  constraint pk_registro primary key (id))
+;
+
 create table urgencia (
   id                        bigint auto_increment not null,
   fecha                     timestamp,
@@ -44,6 +58,8 @@ create table urgencia (
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
+drop table if exists diagnostico;
+
 drop table if exists historial_medico;
 
 drop table if exists medico;
@@ -51,6 +67,8 @@ drop table if exists medico;
 drop table if exists medico_especialista;
 
 drop table if exists paciente;
+
+drop table if exists registro;
 
 drop table if exists urgencia;
 
