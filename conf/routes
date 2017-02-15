@@ -28,5 +28,19 @@ PUT /paciente/:id            controllers.PacienteController.update(id:Long)
 #Dar por paciente por id
 GET /paciente/:id           controllers.PacienteController.getById(id:Long)
 
+#Crear Medico
+POST /medico                controllers.MedicoController.create()
+
+#Dar medicos
+GET /medico                controllers.MedicoController.read()
+
+#Eliminar medico
+DELETE /medico/:id          controllers.MedicoController.delete(id:Long)
+
+#Actualizar medico
+PUT /medico/:id             controllers.MedicoController.update(id:Long)
+
+#Dar medico por id
+GET /medico/:id             controllers.MedicoController.getById(id:Long)
 
 

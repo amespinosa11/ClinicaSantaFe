@@ -57,5 +57,7 @@ public class Medico extends Model
         this.apellido = apellido;
     }
 
+    public static Find<Long,Medico> find = new Find<Long,Medico>(){};
+
 
 }
