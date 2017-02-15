@@ -92,4 +92,23 @@ PUT /historial/:id            controllers.HistorialMedicoController.update(id:Lo
 #Dar Historial Medico por id
 GET /historial/:id           controllers.HistorialMedicoController.getById(id:Long)
 
+##### REGISTRO ######
 
+#Crear Registro
+POST /registro              controllers.RegistroController.create()
+
+#Dar Resgistro
+GET /registro                controllers.RegistroController.read()
+
+#Eliminar Registro
+
+DELETE /registro/:id        controllers.RegistroController.delete(id:Long)
+
+#Actualizar paciente
+
+PUT /registro/:id             controllers.RegistroController.update(id:Long)
+
+
+#Dar Registro por Id
+
+GET /registro/:id              controllers.RegistroController.getById(id:Long)

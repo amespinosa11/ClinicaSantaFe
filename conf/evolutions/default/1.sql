@@ -42,6 +42,9 @@ create table registro (
   id                        bigint auto_increment not null,
   fecha_expedicion          timestamp,
   frecuencia_cardiaca       bigint,
+  presion_cardiaca          bigint,
+  nivel_estres              varchar(255),
+  nivel_actividad_fisica    varchar(255),
   constraint pk_registro primary key (id))
 ;
 
