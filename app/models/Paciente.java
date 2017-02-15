@@ -55,6 +55,8 @@ public class Paciente extends Model
         this.nombre = nombre;
     }
 
+    public static Find<Long,Paciente> find = new Find<Long,Paciente>(){};
+
     public static Paciente bind(JsonNode j) {
         String nombre = j.findPath("nombre").asText();
         String apellido = j.findPath("apellido").asText();

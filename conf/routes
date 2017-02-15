@@ -19,7 +19,14 @@ POST /paciente                 controllers.PacienteController.create()
 #Dar pacientes
 GET /paciente                   controllers.PacienteController.read()
 
+#Eliminar paciente
+DELETE /paciente/:id            controllers.PacienteController.delete(id:Long)
 
+#Actualizar paciente
+PUT /paciente/:id            controllers.PacienteController.update(id:Long)
+
+#Dar por paciente por id
+GET /paciente/:id           controllers.PacienteController.getById(id:Long)
 
 
 
