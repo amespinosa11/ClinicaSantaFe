@@ -70,4 +70,6 @@ public class MedicoEspecialista extends Model
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
+
+    public static Find<Long,MedicoEspecialista> find = new Find<Long,MedicoEspecialista>(){};
 }

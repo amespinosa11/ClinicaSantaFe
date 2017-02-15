@@ -12,7 +12,7 @@ GET     /message                    controllers.AsyncController.message()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
-
+#######PACIENTE############################
 #Crear Paciente
 POST /paciente                 controllers.PacienteController.create()
 
@@ -28,6 +28,7 @@ PUT /paciente/:id            controllers.PacienteController.update(id:Long)
 #Dar por paciente por id
 GET /paciente/:id           controllers.PacienteController.getById(id:Long)
 
+###########MEDICO##############################
 #Crear Medico
 POST /medico                controllers.MedicoController.create()
 
@@ -42,5 +43,21 @@ PUT /medico/:id             controllers.MedicoController.update(id:Long)
 
 #Dar medico por id
 GET /medico/:id             controllers.MedicoController.getById(id:Long)
+
+############MEDICOESPECIALISTA###################
+#Crear Medico Especialista
+POST /medicoespecialista    controllers.MedicoEspecialistaController.create()
+
+#Dar Medicos Especialistas
+GET /medicoespecialista        controllers.MedicoEspecialistaController.read()
+
+#Eliminar Medico Especialista
+DELETE /medicoespecialista/:id  controllers.MedicoEspecialistaController.delete(id:Long)
+
+#Actualizar medico Especialista
+PUT /medicoespecialista/:id     controllers.MedicoEspecialistaController.update(id:Long)
+
+#Dar medico especialista por id
+GET /medicoespecialista/:id     controllers.MedicoEspecialistaController.getById(id:Long)
 
 
