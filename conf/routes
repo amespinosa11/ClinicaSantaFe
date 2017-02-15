@@ -60,4 +60,36 @@ PUT /medicoespecialista/:id     controllers.MedicoEspecialistaController.update(
 #Dar medico especialista por id
 GET /medicoespecialista/:id     controllers.MedicoEspecialistaController.getById(id:Long)
 
+##### URGENCIA ######
+#Crear Urgencia
+POST /urgencia                 controllers.UrgenciaController.create()
+
+#Dar urgencias
+GET /urgencia                   controllers.UrgenciaController.read()
+
+#Eliminar urgencia
+DELETE /urgencia/:id            controllers.UrgenciaController.delete(id:Long)
+
+#Actualizar urgencia
+PUT /urgencia/:id            controllers.UrgenciaController.update(id:Long)
+
+#Dar urgencia por id
+GET /urgencia/:id           controllers.UrgenciaController.getById(id:Long)
+
+##### HISTORIAL MEDICO ######
+#Crear Historial Medico
+POST /historial                 controllers.HistorialMedicoController.create()
+
+#Dar Historiales Medicos
+GET /historial                   controllers.HistorialMedicoController.read()
+
+#Eliminar Historial Medico
+DELETE /historial/:id            controllers.HistorialMedicoController.delete(id:Long)
+
+#Actualizar Historial Medico
+PUT /historial/:id            controllers.HistorialMedicoController.update(id:Long)
+
+#Dar Historial Medico por id
+GET /historial/:id           controllers.HistorialMedicoController.getById(id:Long)
+
 

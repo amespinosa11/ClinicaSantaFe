@@ -12,6 +12,7 @@ create table diagnostico (
 
 create table historial_medico (
   id                        bigint auto_increment not null,
+  descripcion               varchar(255),
   constraint pk_historial_medico primary key (id))
 ;
 

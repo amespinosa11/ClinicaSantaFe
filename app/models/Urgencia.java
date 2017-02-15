@@ -3,7 +3,7 @@ package models;
 import java.util.Date;
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.databind.JsonNode;
-
+import play.data.format.*;
 import javax.persistence.*;
 
 /**
@@ -22,6 +22,7 @@ public class Urgencia extends Model
     /**
      * Fecha en que se genera la urgencia
      */
+    @Formats.DateTime(pattern="dd-MM-yyyy")
     private Date fecha;
 
     /**
@@ -29,11 +30,19 @@ public class Urgencia extends Model
      */
     private String descripcion;
 
-    public Urgencia(Date pFecha, String pDescripcion)
+    public Urgencia(String pDescripcion)
     {
-        this.fecha = pFecha;
+        this.fecha = new Date();
         this.descripcion = pDescripcion;
     }
+
+    public Urgencia(Date pFecha, String pDescripcion)
+    {
+        this.fecha =  pFecha==null ? new Date() : pFecha;
+        this.descripcion = pDescripcion;
+    }
+
+    public Long getId(){ return id;}
 
     public Date getFecha()
     {
@@ -54,4 +63,14 @@ public class Urgencia extends Model
     {
         this.descripcion = pDescripcion;
     }
+
+    public static Find<Long,Urgencia> find = new Find<Long,Urgencia>(){};
+
+    public static Urgencia bind(JsonNode j) {
+    String descripcion = j.findPath("descripcion").asText();
+
+    Urgencia p = new Urgencia(descripcion);
+    return p;
+}
+
 }
