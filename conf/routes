@@ -82,7 +82,7 @@ GET /urgencia/:id           controllers.UrgenciaController.getById(id:Long)
 POST /registro/:id            controllers.RegistroController.create(id:Long)
 
 #Dar Resgistro
-GET /registro                controllers.RegistroController.read()
+GET /registro/:id                controllers.RegistroController.read(id:Long)
 
 #Eliminar Registro
 

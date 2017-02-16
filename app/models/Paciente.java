@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by am.espinosa11 on 12/02/2017.
@@ -127,6 +128,10 @@ public class Paciente extends Model
     public void agregarRegistro(Registro pRegistro)
     {
         registros.add(pRegistro);
+    }
+
+    public void setRegistros(ArrayList<Registro> registros) {
+        this.registros = registros;
     }
 
     public void inicializarRegistros(Registro pRegistro)
