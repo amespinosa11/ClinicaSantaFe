@@ -10,6 +10,7 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Transaction;
@@ -55,6 +56,10 @@ public class PacienteController extends Controller
 
         pS.setApellido(paciente.getApellido());
         pS.setNombre(paciente.getNombre());
+        pS.setEdad(paciente.getEdad());
+        pS.setEstatura(paciente.getEstatura());
+        pS.setPeso(paciente.getPeso());
+        pS.setSexo(paciente.getSexo());
         pS.save();
 
         return ok(toJson(pS));
@@ -72,7 +77,20 @@ public class PacienteController extends Controller
         Paciente paciente = Paciente.find.byId(pId);
         paciente.agregarRegistro(registro);
         registro.save();
-        return ok(toJson(paciente));
+        return ok(toJson(registro));
+    }
+
+    public Result readRegistrosDePaciente(Long pId) {
+        List<Registro> registros = new Model.Finder(String.class, Registro.class).all();
+        List<Registro> registrosPaciente = new ArrayList<Registro>();
+        /*for(Registro registro:registros) {
+            Paciente paciente = registro.getPaciente();
+            Long idPaciente = paciente.getId();
+            if (idPaciente == pId)
+                registrosPaciente.add(registro);
+        }*/
+
+        return ok(toJson(registros));
     }
 
 }

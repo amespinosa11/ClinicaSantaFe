@@ -10,12 +10,6 @@ create table diagnostico (
   constraint pk_diagnostico primary key (id))
 ;
 
-create table historial_medico (
-  id                        bigint auto_increment not null,
-  descripcion               varchar(255),
-  constraint pk_historial_medico primary key (id))
-;
-
 create table medico (
   id                        bigint auto_increment not null,
   nombre                    varchar(255),
@@ -35,16 +29,21 @@ create table paciente (
   id                        bigint auto_increment not null,
   nombre                    varchar(255),
   apellido                  varchar(255),
+  edad                      integer,
+  peso                      double,
+  estatura                  double,
+  sexo                      varchar(255),
   constraint pk_paciente primary key (id))
 ;
 
 create table registro (
   id                        bigint auto_increment not null,
   fecha_expedicion          timestamp,
-  frecuencia_cardiaca       bigint,
-  presion_cardiaca          bigint,
-  nivel_estres              varchar(255),
-  nivel_actividad_fisica    varchar(255),
+  frecuencia_cardiaca       integer,
+  presion_sanguinea1        integer,
+  presion_sanguinea2        integer,
+  nivel_estres              integer,
+  nivel_actividad_fisica    integer,
   constraint pk_registro primary key (id))
 ;
 
@@ -63,8 +62,6 @@ create table urgencia (
 SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists diagnostico;
-
-drop table if exists historial_medico;
 
 drop table if exists medico;
 

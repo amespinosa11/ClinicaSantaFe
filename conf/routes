@@ -76,26 +76,10 @@ PUT /urgencia/:id            controllers.UrgenciaController.update(id:Long)
 #Dar urgencia por id
 GET /urgencia/:id           controllers.UrgenciaController.getById(id:Long)
 
-##### HISTORIAL MEDICO ######
-#Crear Historial Medico
-POST /historial                 controllers.HistorialMedicoController.create()
-
-#Dar Historiales Medicos
-GET /historial                   controllers.HistorialMedicoController.read()
-
-#Eliminar Historial Medico
-DELETE /historial/:id            controllers.HistorialMedicoController.delete(id:Long)
-
-#Actualizar Historial Medico
-PUT /historial/:id            controllers.HistorialMedicoController.update(id:Long)
-
-#Dar Historial Medico por id
-GET /historial/:id           controllers.HistorialMedicoController.getById(id:Long)
-
 ##### REGISTRO ######
 
 #Crear Registro
-POST /registro              controllers.RegistroController.create()
+POST /registro/:id            controllers.RegistroController.create(id:Long)
 
 #Dar Resgistro
 GET /registro                controllers.RegistroController.read()
@@ -104,15 +88,18 @@ GET /registro                controllers.RegistroController.read()
 
 DELETE /registro/:id        controllers.RegistroController.delete(id:Long)
 
-#Actualizar paciente
+#Actualizar registro
 
 PUT /registro/:id             controllers.RegistroController.update(id:Long)
-
 
 #Dar Registro por Id
 
 GET /registro/:id              controllers.RegistroController.getById(id:Long)
 
-############Crear registro para un paciente####################Req funcional
-
+############ REGISTROS DE PACIENTE ####################
+#Crea un registro para un paciente
 POST /paciente/:pid/registro     controllers.PacienteController.createRegistroDePaciente(pid:Long)
+
+#Da los registros de un paciente
+GET /paciente/:pid/registro      controllers.PacienteController.readRegistrosDePaciente(pid:Long)
+

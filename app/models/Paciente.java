@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -23,10 +25,6 @@ public class Paciente extends Model
     private Long id;
 
     /**
-     * Historial de mediciones del paciente. Se compone de registros
-     */
-    private ArrayList<Registro> registros = new ArrayList<Registro>();
-    /**
      * Nombre del Paciente.
      */
     private String nombre;
@@ -36,10 +34,25 @@ public class Paciente extends Model
      */
     private String apellido;
 
-    public Paciente(String pNombre, String pApellido)
+    private Integer edad;
+
+    private Double peso;
+
+    private Double estatura;
+
+    private String sexo;
+
+    private ArrayList<Registro> registros;
+
+    public Paciente(String pNombre, String pApellido,Integer pEdad, Double pPeso, Double pEstatura,String pSexo)
     {
         this.nombre = pNombre;
         this.apellido = pApellido;
+        this.edad = pEdad;
+        this.peso = pPeso;
+        this.estatura = pEstatura;
+        this.sexo = pSexo;
+        inicializarRegistros();
     }
 
     public Long getId() {
@@ -54,6 +67,22 @@ public class Paciente extends Model
         return nombre;
     }
 
+    public Double getEstatura() {
+        return estatura;
+    }
+
+    public Double getPeso() {
+        return peso;
+    }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
@@ -62,12 +91,57 @@ public class Paciente extends Model
         this.nombre = nombre;
     }
 
-    public void agregarRegistro(Registro pRegistro)
-    {
-        registros.add(pRegistro);
+    public void setEdad(Integer edad) {
+        this.edad = edad;
     }
 
-    public ArrayList<Registro> darRegistros() { return registros; }
+    public void setEstatura(Double estatura) {
+        this.estatura = estatura;
+    }
+
+    public void setPeso(Double peso) {
+        this.peso = peso;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public static Find<Long,Paciente> find = new Find<Long,Paciente>(){};
+
+    public Integer frecuenciaCardiacaMaxima()
+    {
+        Integer max = 0;
+        Integer nPeso = peso.intValue();
+        if(sexo.equalsIgnoreCase("mujer"))
+        {
+            max = ((210 - ((1/2)*edad))-((1/100)*nPeso));
+        }
+        else
+        {
+            max = ((210 - ((1/2)*edad))-((1/100)*nPeso))+4;
+        }
+        return max;
+    }
+
+    public ArrayList<Registro> getRegistros() {
+        return registros;
+    }
+
+    public void agregarRegistro(Registro pRegistro)
+    {
+
+        if(registros == null)
+            inicializarRegistros();
+        registros.add(pRegistro);
+        pRegistro.setPaciente(this.getId());
+        System.out.println("size es " + registros.size());
+    }
+
+    public void inicializarRegistros()
+    {
+        registros = new ArrayList<>();
+    }
 
     /**
      * Para dos fechas, responde con el arreglo de registros que están dentro de este rango
@@ -79,19 +153,9 @@ public class Paciente extends Model
     {
         ArrayList<Registro> registrosEnRango = new ArrayList<Registro>();
         for (Registro registro : registros )
-            if(registro.getFecha().after(fecha1) && registro.getFecha().before(fecha2))
+            if(registro.getFechaExpedicion().after(fecha1) && registro.getFechaExpedicion().before(fecha2))
                 registrosEnRango.add(registro);
         return registrosEnRango;
-    }
-
-    public static Find<Long,Paciente> find = new Find<Long,Paciente>(){};
-
-    public static Paciente bind(JsonNode j) {
-        String nombre = j.findPath("nombre").asText();
-        String apellido = j.findPath("apellido").asText();
-
-        Paciente p = new Paciente(nombre,apellido);
-        return p;
     }
 
 }

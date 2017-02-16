@@ -37,100 +37,112 @@ public class Registro extends Model
     /**
      * La frecuencia cardiaca del paciente.
      */
-    private Long frecuenciaCardiaca;
+    private Integer frecuenciaCardiaca;
 
-    private Long presionCardiaca;
+    private Integer presionSanguinea1;
 
-    private String nivelEstres;
+    private Integer presionSanguinea2;
 
-    private String nivelActividadFisica;
+    private Integer nivelEstres;
 
-    public Registro(Long pFrecuencia, Date pFecha, Long pPresionCardiaca, String pNivel, String pNivelA)
+    private Integer nivelActividadFisica;
+
+    private Paciente paciente;
+
+    public Registro(Date pDia,Integer p1,Integer p2, Integer p3,Integer p4,Integer p5)
     {
-        this.frecuenciaCardiaca=pFrecuencia;
-        this.fechaExpedicion= pFecha;
-        this.presionCardiaca = pPresionCardiaca;
-        this.nivelEstres = pNivel;
-        this.nivelActividadFisica = pNivelA;
+        this.fechaExpedicion = pDia;
+        this.presionSanguinea1 = p1;
+        this.presionSanguinea2 = p2;
+        this.frecuenciaCardiaca = p3;
+        this.nivelEstres = p4;
+        this.nivelActividadFisica = p5;
     }
 
-    public Registro(String pNivel, String pNivelA)
-    {
-        this.nivelEstres = pNivel;
-        this.nivelActividadFisica = pNivelA;
+    public Date getFechaExpedicion() {
+        return fechaExpedicion;
     }
 
-    public Registro(Long pFrecuencia, Long pPresionCardiaca, String pNivel, String pNivelA)
-    {
-        this.frecuenciaCardiaca=pFrecuencia;
-        this.presionCardiaca = pPresionCardiaca;
-        this.nivelEstres = pNivel;
-        this.nivelActividadFisica = pNivelA;
+    public Integer getPresionSanguinea1() {
+        return presionSanguinea1;
     }
 
+    public Integer getFrecuenciaCardiaca() {
+        return frecuenciaCardiaca;
+    }
+
+    public Integer getNivelActividadFisica() {
+        return nivelActividadFisica;
+    }
+
+    public Integer getNivelEstres() {
+        return nivelEstres;
+    }
+
+    public Integer getPresionSanguinea2() {
+        return presionSanguinea2;
+    }
+
+    public void setPresionSanguinea1(Integer presionSanguinea1) {
+        this.presionSanguinea1 = presionSanguinea1;
+    }
+
+    public void setFechaExpedicion(Date fechaExpedicion) {
+        this.fechaExpedicion = fechaExpedicion;
+    }
+
+    public void setFrecuenciaCardiaca(Integer frecuenciaCardiaca) {
+        this.frecuenciaCardiaca = frecuenciaCardiaca;
+    }
+
+    public void setNivelActividadFisica(Integer nivelActividadFisica) {
+        this.nivelActividadFisica = nivelActividadFisica;
+    }
+
+    public void setNivelEstres(Integer nivelEstres) {
+        this.nivelEstres = nivelEstres;
+    }
+
+    public void setPresionSanguinea2(Integer presionSanguinea2) {
+        this.presionSanguinea2 = presionSanguinea2;
+    }
+
+    public void setPaciente(Long pId) {
+        this.paciente = Paciente.find.byId(pId);
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
 
     public Long getId() {
         return id;
     }
 
-    public Long getFrecuencia() {
-        return frecuenciaCardiaca;
+    public String getColor(Long pId)
+    {
+        Paciente paciente = Paciente.find.byId(pId);
+        String color = "SIN";
+        if(this.frecuenciaCardiaca>=paciente.frecuenciaCardiacaMaxima()||
+                (this.presionSanguinea1>=135 &&this.presionSanguinea2>=85) || this.nivelEstres>=8)
+        {
+            color = "ROJO";
+        }
+        else if(nivelEstres>=6 &&(this.frecuenciaCardiaca<paciente.frecuenciaCardiacaMaxima() &&(
+        this.presionSanguinea1<135 && this.presionSanguinea2<85)))
+        {
+            color = "AMARILLO";
+        }
+        else
+        {
+            color = "VERDE";
+        }
+
+        return color;
+
     }
 
-    public Date getFecha() {
-        return fechaExpedicion;
-    }
 
-    public Long getPresionCardiaca(){
-        return presionCardiaca;
-    }
-
-    public String getNivelEstres(){
-        return nivelEstres;
-    }
-
-    public String getNivelActividadFisica(){
-        return  nivelActividadFisica;
-    }
-
-
-    public void setFrecuenciaCardiaca(Long pFrecuencia) {
-        this.frecuenciaCardiaca = pFrecuencia;
-    }
-
-    public void setFechaExpedicion(Date pFecha) {
-        this.fechaExpedicion = pFecha;
-    }
-
-    public void setNivelActividadFisica(String nivelActividadFisica) {
-        this.nivelActividadFisica = nivelActividadFisica;
-    }
-
-    public void setNivelEstres(String nivelEstres) {
-        this.nivelEstres = nivelEstres;
-    }
-
-    public void setPresionCardiaca(Long presionCardiaca) {
-        this.presionCardiaca = presionCardiaca;
-    }
 
     public static Find<Long,Registro> find = new Find<Long,Registro>(){};
-
-    public static Registro bind(JsonNode j) {
-
-        Long frecuenciaCardiaca = j.findPath("frecuenciaCardiaca").asLong();
-        String nivelEstres = j.findPath("nivelEstres").asText();
-        String nivelActividad = j.findPath("nivelActividad").asText();
-        Long presionCardiaca = j.findPath("presionCardiaca").asLong();
-
-
-        /** Registro p = new Registro(nivelEstres,nivelActividad);
-         *
-         */
-        Registro p = new Registro(frecuenciaCardiaca, presionCardiaca, nivelEstres, nivelActividad);
-        return p;
-    }
-
-
-
 }
