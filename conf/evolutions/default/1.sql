@@ -3,6 +3,13 @@
 
 # --- !Ups
 
+create table consejo (
+  id                        bigint auto_increment not null,
+  asunto                    varchar(255),
+  descripcion               varchar(255),
+  constraint pk_consejo primary key (id))
+;
+
 create table diagnostico (
   id                        bigint auto_increment not null,
   fecha_expedicion          timestamp,
@@ -60,6 +67,8 @@ create table urgencia (
 # --- !Downs
 
 SET REFERENTIAL_INTEGRITY FALSE;
+
+drop table if exists consejo;
 
 drop table if exists diagnostico;
 
