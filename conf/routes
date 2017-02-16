@@ -96,6 +96,28 @@ PUT /registro/:id             controllers.RegistroController.update(id:Long)
 
 GET /registro/:id              controllers.RegistroController.getById(id:Long)
 
+##########CONSEJO################
+
+#Crear Consejo
+POST /consejo            controllers.ConsejoController.create()
+
+#Dar Consejo
+GET /consejo               controllers.ConsejoController.read()
+
+#Eliminar Consejo
+
+DELETE /consejo/:id        controllers.ConsejoController.delete(id:Long)
+
+#Actualizar consejo
+
+PUT /consejo/:id             controllers.ConsejoController.update(id:Long)
+
+#Dar consejo por Id
+
+GET /consejo/:id              controllers.ConsejoController.getById(id:Long)
+
+
+
 ############ REGISTROS DE PACIENTE ####################
 #Crea un registro para un paciente
 POST /paciente/:pid/registro     controllers.PacienteController.createRegistroDePaciente(pid:Long)

@@ -62,7 +62,7 @@ public class RegistroController extends Controller
             urgencia.setFecha(registro.getFechaExpedicion());
             urgencia.setPaciente(pId);
             urgencia.setDescripcion("El paciente presenta altos niveles");
-            urgencia.update();
+            urgencia.save();
             return ok(toJson(registro)+"PACIENTE EN PELIGRO"+toJson(urgencia));
         }
         if(registro.getColor(pId).equals("AMARILLO"))
