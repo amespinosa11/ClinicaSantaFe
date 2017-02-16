@@ -127,3 +127,24 @@ GET /paciente/:pid/registro      controllers.PacienteController.readRegistrosDeP
 
 #Da los registros de un paciente en un rango de fechas
 GET /paciente/:pid/registroRangoFechas/:f1/:f2      controllers.PacienteController.readRegistrosDePacienteRangoFechas(pid:Long,f1:Long,f2:Long)
+
+########## MARCAPASO ###################
+
+
+#Crear Marcapaso
+POST /marcapaso            controllers.MarcapasoController.create()
+
+#Dar Marcapaso
+GET /marcapaso               controllers.MarcapasoController.read()
+
+#Eliminar Marcapaso
+
+DELETE /marcapaso/:id        controllers.MarcapasoController.delete(id:Long)
+
+#Actualizar Marcapaso
+
+PUT /marcapaso/:id             controllers.MarcapasoController.update(id:Long)
+
+#Dar Marcapaso por Id
+
+GET /marcapaso/:id              controllers.MarcapasoController.getById(id:Long)

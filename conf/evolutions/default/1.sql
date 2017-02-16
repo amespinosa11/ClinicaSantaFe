@@ -17,6 +17,12 @@ create table diagnostico (
   constraint pk_diagnostico primary key (id))
 ;
 
+create table marcapaso (
+  id                        bigint auto_increment not null,
+  frecuencia_marcapaso      double,
+  constraint pk_marcapaso primary key (id))
+;
+
 create table medico (
   id                        bigint auto_increment not null,
   nombre                    varchar(255),
@@ -71,6 +77,8 @@ SET REFERENTIAL_INTEGRITY FALSE;
 drop table if exists consejo;
 
 drop table if exists diagnostico;
+
+drop table if exists marcapaso;
 
 drop table if exists medico;
 

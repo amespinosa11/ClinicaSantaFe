@@ -72,4 +72,6 @@ public class MedicoEspecialista extends Model
     }
 
     public static Find<Long,MedicoEspecialista> find = new Find<Long,MedicoEspecialista>(){};
+
+
 }
