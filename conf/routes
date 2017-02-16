@@ -125,3 +125,5 @@ POST /paciente/:pid/registro     controllers.PacienteController.createRegistroDe
 #Da los registros de un paciente
 GET /paciente/:pid/registro      controllers.PacienteController.readRegistrosDePaciente(pid:Long)
 
+#Da los registros de un paciente en un rango de fechas
+GET /paciente/:pid/registroRangoFechas/:f1/:f2      controllers.PacienteController.readRegistrosDePacienteRangoFechas(pid:Long,f1:Long,f2:Long)

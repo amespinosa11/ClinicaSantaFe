@@ -11,6 +11,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Transaction;
@@ -82,8 +83,9 @@ public class PacienteController extends Controller
 
     public Result readRegistrosDePaciente(Long pId) {
         List<Registro> registros = new Model.Finder(String.class, Registro.class).all();
-        List<Registro> registrosPaciente = new ArrayList<Registro>();
-        /*for(Registro registro:registros) {
+        Paciente paciente = Paciente.find.byId(pId);
+        /*List<Registro> registrosPaciente = new ArrayList<Registro>();
+        for(Registro registro:registros) {
             Paciente paciente = registro.getPaciente();
             Long idPaciente = paciente.getId();
             if (idPaciente == pId)
@@ -91,6 +93,20 @@ public class PacienteController extends Controller
         }*/
 
         return ok(toJson(registros));
+    }
+
+    public Result readRegistrosDePacienteRangoFechas(Long pId, Long f1, Long f2) {
+        List<Registro> registros = new Model.Finder(String.class, Registro.class).all();
+        List<Registro> registrosPaciente = new ArrayList<Registro>();
+        for(Registro registro:registros) {
+            Date fecha = registro.getFechaExpedicion();
+            Date fecha1 = new Date(f1);
+            Date fecha2 = new Date(f2);
+            if (fecha.after(fecha1) && fecha.before(fecha2) )
+                registrosPaciente.add(registro);
+        }
+
+        return ok(toJson(registrosPaciente));
     }
 
 }
