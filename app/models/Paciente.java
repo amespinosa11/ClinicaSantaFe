@@ -44,6 +44,8 @@ public class Paciente extends Model
 
     private ArrayList<Registro> registros;
 
+    private Marcapaso marcapaso;
+
     public Paciente(String pNombre, String pApellido,Integer pEdad, Double pPeso, Double pEstatura,String pSexo)
     {
         this.nombre = pNombre;
@@ -53,6 +55,7 @@ public class Paciente extends Model
         this.estatura = pEstatura;
         this.sexo = pSexo;
         inicializarRegistros();
+        iniciarMarcapaso();
     }
 
     public Long getId() {
@@ -161,6 +164,12 @@ public class Paciente extends Model
             if(registro.getFechaExpedicion().after(fecha1) && registro.getFechaExpedicion().before(fecha2))
                 registrosEnRango.add(registro);
         return registrosEnRango;
+    }
+
+
+    public void iniciarMarcapaso(){
+        Double frecuenciaInicial = peso/estatura;
+        marcapaso = new Marcapaso(frecuenciaInicial);
     }
 
 }

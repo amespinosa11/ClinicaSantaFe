@@ -125,3 +125,24 @@ POST /paciente/:pid/registro     controllers.PacienteController.createRegistroDe
 #Da los registros de un paciente
 GET /paciente/:pid/registro      controllers.PacienteController.readRegistrosDePaciente(pid:Long)
 
+
+########## MARCAPASO ###################
+
+
+#Crear Marcapaso
+POST /marcapaso            controllers.MarcapasoController.create()
+
+#Dar Marcapaso
+GET /marcapaso               controllers.MarcapasoController.read()
+
+#Eliminar Marcapaso
+
+DELETE /marcapaso/:id        controllers.MarcapasoController.delete(id:Long)
+
+#Actualizar Marcapaso
+
+PUT /marcapaso/:id             controllers.MarcapasoController.update(id:Long)
+
+#Dar Marcapaso por Id
+
+GET /marcapaso/:id              controllers.MarcapasoController.getById(id:Long)
