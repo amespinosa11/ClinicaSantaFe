@@ -66,4 +66,13 @@ public class PacienteController extends Controller
         return ok(toJson(paciente));
     }
 
+    public Result createRegistroDePaciente(Long pId)
+    {
+        Registro registro = Form.form(Registro.class).bindFromRequest().get();
+        Paciente paciente = Paciente.find.byId(pId);
+        paciente.agregarRegistro(registro);
+        registro.save();
+        return ok(toJson(paciente));
+    }
+
 }

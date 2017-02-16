@@ -112,3 +112,7 @@ PUT /registro/:id             controllers.RegistroController.update(id:Long)
 #Dar Registro por Id
 
 GET /registro/:id              controllers.RegistroController.getById(id:Long)
+
+############Crear registro para un paciente####################Req funcional
+
+POST /paciente/:pid/registro     controllers.PacienteController.createRegistroDePaciente(pid:Long)
