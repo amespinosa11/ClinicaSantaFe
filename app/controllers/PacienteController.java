@@ -55,6 +55,10 @@ public class PacienteController extends Controller
 
         pS.setApellido(paciente.getApellido());
         pS.setNombre(paciente.getNombre());
+        pS.setEdad(paciente.getEdad());
+        pS.setEstatura(paciente.getEstatura());
+        pS.setPeso(paciente.getPeso());
+        pS.setSexo(paciente.getSexo());
         pS.save();
 
         return ok(toJson(pS));

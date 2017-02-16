@@ -25,6 +25,7 @@ public class Urgencia extends Model
     @Formats.DateTime(pattern="dd-MM-yyyy")
     private Date fecha;
 
+    private Paciente paciente;
     /**
      * Descripcion del caso de la urgencia
      */
@@ -65,6 +66,14 @@ public class Urgencia extends Model
     }
 
     public static Find<Long,Urgencia> find = new Find<Long,Urgencia>(){};
+
+    public void setPaciente(Long pId) {
+        this.paciente = Paciente.find.byId(pId);
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
 
     public static Urgencia bind(JsonNode j) {
     String descripcion = j.findPath("descripcion").asText();
