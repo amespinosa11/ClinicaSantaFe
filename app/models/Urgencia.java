@@ -25,11 +25,13 @@ public class Urgencia extends Model
     @Formats.DateTime(pattern="dd-MM-yyyy")
     private Date fecha;
 
-    private Paciente paciente;
+
     /**
      * Descripcion del caso de la urgencia
      */
     private String descripcion;
+
+    private Paciente paciente;
 
     public Urgencia(String pDescripcion)
     {

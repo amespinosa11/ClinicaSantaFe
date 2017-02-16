@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -135,8 +135,13 @@ public class Paciente extends Model
             inicializarRegistros();
         registros.add(pRegistro);
         pRegistro.setPaciente(this.getId());
-        System.out.println("size es " + registros.size());
+        //System.out.println("size es " + registros.size());
     }
+
+    public void setRegistros(ArrayList<Registro> registros) {
+        this.registros = registros;
+    }
+
 
     public void inicializarRegistros()
     {
