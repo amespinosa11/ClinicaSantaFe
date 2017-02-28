@@ -2,10 +2,7 @@ package models;
 
 import com.avaje.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by jp.otalora10 on 15/02/2017.
@@ -20,11 +17,15 @@ public class Marcapaso extends Model
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
+
     /**
      * frecuencia en la que funciona el marcapasos
      */
 
     private Double frecuenciaMarcapaso;
+
+    @OneToOne
+    private Paciente paciente;
 
 
     public Marcapaso(Double pFrecuencia)

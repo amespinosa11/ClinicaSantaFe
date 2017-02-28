@@ -47,6 +47,7 @@ public class Registro extends Model
 
     private Integer nivelActividadFisica;
 
+    @ManyToOne
     private Paciente paciente;
 
     public Registro(Date pDia,Integer p1,Integer p2, Integer p3,Integer p4,Integer p5)

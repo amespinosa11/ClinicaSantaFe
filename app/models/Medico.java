@@ -2,10 +2,8 @@ package models;
 
 import com.avaje.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by am.espinosa11 on 13/02/2017.
@@ -30,6 +28,12 @@ public class Medico extends Model
      * Apellido del Medico.
      */
     private String apellido;
+
+    @OneToMany
+    private List<Consejo> consejos;
+
+    @ManyToMany
+    private List<Paciente> pacientes;
 
     public Medico(String pNombre, String pApellido)
     {

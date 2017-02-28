@@ -72,18 +72,17 @@ public class PacienteController extends Controller
         return ok(toJson(paciente));
     }
 
-    public Result createRegistroDePaciente(Long pId)
-    {
-        Registro registro = Form.form(Registro.class).bindFromRequest().get();
-        Paciente paciente = Paciente.find.byId(pId);
-        paciente.agregarRegistro(registro);
-        registro.save();
-        return ok(toJson(registro));
-    }
+    //public Result createRegistroDePaciente(Long pId)
+    //{
+        //Registro registro = Form.form(Registro.class).bindFromRequest().get();
+      //  Paciente paciente = Paciente.find.byId(pId);
+        //registro.save();
+        //return ok(toJson(registro));
+    //}
 
-    public Result readRegistrosDePaciente(Long pId) {
-        List<Registro> registros = new Model.Finder(String.class, Registro.class).all();
-        Paciente paciente = Paciente.find.byId(pId);
+    //public Result readRegistrosDePaciente(Long pId) {
+      //  List<Registro> registros = new Model.Finder(String.class, Registro.class).all();
+       // Paciente paciente = Paciente.find.byId(pId);
         /*List<Registro> registrosPaciente = new ArrayList<Registro>();
         for(Registro registro:registros) {
             Paciente paciente = registro.getPaciente();
@@ -92,8 +91,8 @@ public class PacienteController extends Controller
                 registrosPaciente.add(registro);
         }*/
 
-        return ok(toJson(registros));
-    }
+        //return ok(toJson(registros));
+    //}
 
     public Result readRegistrosDePacienteRangoFechas(Long pId, Long f1, Long f2) {
         List<Registro> registros = new Model.Finder(String.class, Registro.class).all();

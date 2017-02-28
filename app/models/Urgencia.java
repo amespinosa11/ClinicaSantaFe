@@ -31,6 +31,7 @@ public class Urgencia extends Model
      */
     private String descripcion;
 
+    @ManyToOne
     private Paciente paciente;
 
     public Urgencia(String pDescripcion)

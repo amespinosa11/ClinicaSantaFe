@@ -42,9 +42,23 @@ public class Paciente extends Model
 
     private String sexo;
 
-    private ArrayList<Registro> registros;
+    @OneToMany
+    private List<Registro> registros;
 
+    @OneToOne
     private Marcapaso marcapaso;
+
+    @OneToMany
+    private List<Urgencia> urgencias;
+
+    @ManyToMany
+    private List<Medico> medicos;
+
+    @ManyToMany
+    private List<MedicoEspecialista> medicosEspecialistas;
+
+    @OneToMany
+    private List<Diagnostico> diagnosticos;
 
     public Paciente(String pNombre, String pApellido,Integer pEdad, Double pPeso, Double pEstatura,String pSexo)
     {
@@ -54,7 +68,7 @@ public class Paciente extends Model
         this.peso = pPeso;
         this.estatura = pEstatura;
         this.sexo = pSexo;
-        inicializarRegistros();
+
         iniciarMarcapaso();
     }
 
@@ -127,29 +141,6 @@ public class Paciente extends Model
         return max;
     }
 
-    public ArrayList<Registro> getRegistros() {
-        return registros;
-    }
-
-    public void agregarRegistro(Registro pRegistro)
-    {
-
-        if(registros == null)
-            inicializarRegistros();
-        registros.add(pRegistro);
-        pRegistro.setPaciente(this.getId());
-        //System.out.println("size es " + registros.size());
-    }
-
-    public void setRegistros(ArrayList<Registro> registros) {
-        this.registros = registros;
-    }
-
-
-    public void inicializarRegistros()
-    {
-        registros = new ArrayList<>();
-    }
 
     /**
      * Para dos fechas, responde con el arreglo de registros que están dentro de este rango
@@ -157,7 +148,7 @@ public class Paciente extends Model
      * @param fecha2 fecha final del rango
      * @return
      */
-    public ArrayList<Registro> darRegistrosEnRangoFechas(Date fecha1, Date fecha2)
+    public List<Registro> darRegistrosEnRangoFechas(Date fecha1, Date fecha2)
     {
         ArrayList<Registro> registrosEnRango = new ArrayList<Registro>();
         for (Registro registro : registros )

@@ -2,10 +2,7 @@ package models;
 
 import com.avaje.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by am.espinosa11 on 15/02/2017.
@@ -23,6 +20,12 @@ public class Consejo extends Model
     private String asunto;
 
     private String descripcion;
+
+    @ManyToOne
+    private Medico medico;
+
+    @ManyToOne
+    private Paciente paciente;
 
 
     public Consejo(String pAsunto, String pDescripcion)
