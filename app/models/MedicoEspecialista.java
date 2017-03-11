@@ -9,6 +9,7 @@ import java.util.List;
  * Created by am.espinosa11 on 13/02/2017.
  */
 @Entity
+@Table(name = "medicoespecialista")
 public class MedicoEspecialista extends Model
 {
     /**

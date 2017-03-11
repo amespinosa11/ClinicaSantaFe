@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.JsonNode;
 
 
@@ -19,6 +20,7 @@ import play.data.validation.*;
 
 
 @Entity
+@Table(name = "registro")
 public class Registro extends Model
 {
     /**
@@ -31,7 +33,7 @@ public class Registro extends Model
     /**
      * Fecha de Expedicion.
      */
-    @Formats.DateTime(pattern="yyyy-MM-dd")
+    @Formats.DateTime(pattern="dd-MM-yyyy")
     private Date fechaExpedicion;
 
     /**
@@ -47,8 +49,12 @@ public class Registro extends Model
 
     private Integer nivelActividadFisica;
 
-    @ManyToOne
+    @ManyToOne @JsonBackReference
+    @JoinColumn(name = "paciente_id")
     private Paciente paciente;
+
+    @OneToOne @JsonBackReference
+    private Notificacion notificacion;
 
     public Registro(Date pDia,Integer p1,Integer p2, Integer p3,Integer p4,Integer p5)
     {
@@ -143,7 +149,13 @@ public class Registro extends Model
 
     }
 
+    public void setNotificacion(Notificacion notificacion) {
+        this.notificacion = notificacion;
+    }
 
+    public Notificacion getNotificacion() {
+        return notificacion;
+    }
 
     public static Find<Long,Registro> find = new Find<Long,Registro>(){};
 }

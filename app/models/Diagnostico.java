@@ -8,6 +8,7 @@ import java.util.Date;
 
 
 @Entity
+@Table(name = "diagnostico")
 public class Diagnostico extends Model
 {
     /**

@@ -2,6 +2,7 @@ package models;
 
 import java.util.Date;
 import com.avaje.ebean.Model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import play.data.format.*;
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import javax.persistence.*;
  * Created by fa.lopez10 on 13/02/2017.
  */
 @Entity
+@Table(name = "urgencia")
 public class Urgencia extends Model
 {
     /**
@@ -31,7 +33,8 @@ public class Urgencia extends Model
      */
     private String descripcion;
 
-    @ManyToOne
+    @ManyToOne@JsonBackReference
+    @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
     public Urgencia(String pDescripcion)

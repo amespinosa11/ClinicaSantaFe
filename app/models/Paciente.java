@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.Date;
  */
 
 @Entity
+@Table(name = "paciente")
 public class Paciente extends Model
 {
 
@@ -42,23 +44,29 @@ public class Paciente extends Model
 
     private String sexo;
 
-    @OneToMany
+    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)@JsonBackReference
     private List<Registro> registros;
 
-    @OneToOne
+    @OneToOne @JsonBackReference
     private Marcapaso marcapaso;
 
-    @OneToMany
+    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)@JsonBackReference
     private List<Urgencia> urgencias;
 
     @ManyToMany
     private List<Medico> medicos;
 
-    @ManyToMany
+    @ManyToMany @JsonBackReference
     private List<MedicoEspecialista> medicosEspecialistas;
 
-    @OneToMany
+    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)@JsonBackReference
     private List<Diagnostico> diagnosticos;
+
+    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)@JsonBackReference
+    private List<Consejo> consejos;
+
+    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)@JsonBackReference
+    private List<Notificacion>notificaciones;
 
     public Paciente(String pNombre, String pApellido,Integer pEdad, Double pPeso, Double pEstatura,String pSexo)
     {
@@ -163,4 +171,68 @@ public class Paciente extends Model
         marcapaso = new Marcapaso(frecuenciaInicial);
     }
 
+    public void setRegistro(Registro registro) {
+        this.registros.add(registro);
+    }
+
+    public void setConsejo(Consejo consejo)
+    {
+        this.consejos.add(consejo);
+    }
+
+    public void setMedicoEspecialista(MedicoEspecialista medicoEspecialista)
+    {
+        this.medicosEspecialistas.add(medicoEspecialista);
+    }
+
+    public void setMedico(Medico medico) {
+        this.medicos.add(medico);
+    }
+
+    public void setDiagnostico(Diagnostico diagnostico)
+    {
+        this.diagnosticos.add(diagnostico);
+    }
+
+    public void setUrgencia(Urgencia urgencia)
+    {
+        this.urgencias.add(urgencia);
+    }
+
+    public List<Consejo> getConsejos() {
+        return consejos;
+    }
+
+    public List<Registro> getRegistros() {
+        return registros;
+    }
+
+    public List<Urgencia> getUrgencias() {
+        return urgencias;
+    }
+
+    public List<MedicoEspecialista> getMedicosEspecialistas() {
+        return medicosEspecialistas;
+    }
+
+    public List<Medico> getMedicos() {
+        return medicos;
+    }
+
+    public void setNotificacion(Notificacion notificacion)
+    {
+        this.notificaciones.add(notificacion);
+    }
+
+    public List<Notificacion> getNotificaciones() {
+        return notificaciones;
+    }
+
+    public List<Diagnostico> getDiagnosticos() {
+        return diagnosticos;
+    }
+
+    public Marcapaso getMarcapaso() {
+        return marcapaso;
+    }
 }

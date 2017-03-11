@@ -8,6 +8,7 @@ import javax.persistence.*;
  * Created by jp.otalora10 on 15/02/2017.
  */
 @Entity
+@Table(name = "marcapaso")
 public class Marcapaso extends Model
 {
     /**

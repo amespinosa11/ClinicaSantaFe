@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  */
 
 @Entity
+@Table(name = "medico")
 public class Medico extends Model
 {
     /**
@@ -29,11 +31,12 @@ public class Medico extends Model
      */
     private String apellido;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "medico") @JsonBackReference
     private List<Consejo> consejos;
 
     @ManyToMany
     private List<Paciente> pacientes;
+
 
     public Medico(String pNombre, String pApellido)
     {
@@ -62,6 +65,18 @@ public class Medico extends Model
     }
 
     public static Find<Long,Medico> find = new Find<Long,Medico>(){};
+
+    public void setConsejo(Consejo consejo)
+    {
+        this.consejos.add(consejo);
+    }
+
+    public void setPaciente(Paciente paciente)
+    {
+        this.pacientes.add(paciente);
+    }
+
+
 
 
 }

@@ -37,6 +37,15 @@ public class PacienteController extends Controller
         return ok(toJson(paciente));
     }
 
+    public Result agregarMedico(Long idMedico, Long idPaciente)
+    {
+        Paciente paciente = Paciente.find.byId(idPaciente);
+        Medico medico = Medico.find.byId(idMedico);
+        paciente.setMedico(medico);
+        paciente.save();
+        return ok(toJson(paciente));
+    }
+
     public Result read() {
 
         List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();

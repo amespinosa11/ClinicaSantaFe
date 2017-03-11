@@ -28,6 +28,9 @@ PUT /paciente/:id            controllers.PacienteController.update(id:Long)
 #Dar por paciente por id
 GET /paciente/:id           controllers.PacienteController.getById(id:Long)
 
+#Agregar medico
+PUT /paciente/agregarMedico/:idMedico/:idPaciente controllers.PacienteController.agregarMedico(idMedico:Long,idPaciente:Long)
+
 ###########MEDICO##############################
 #Crear Medico
 POST /medico                controllers.MedicoController.create()
@@ -79,42 +82,46 @@ GET /urgencia/:id           controllers.UrgenciaController.getById(id:Long)
 ##### REGISTRO ######
 
 #Crear Registro
-POST /registro/:id            controllers.RegistroController.create(id:Long)
+POST /paciente/registro/:idPaciente            controllers.RegistroController.create(idPaciente:Long)
 
 #Dar Resgistro
-GET /registro/:id                controllers.RegistroController.read(id:Long)
+GET /paciente/registro/:idPaciente                controllers.RegistroController.read(idPaciente:Long)
 
 #Eliminar Registro
 
-DELETE /registro/:id        controllers.RegistroController.delete(id:Long)
+DELETE /paciente/registro/:id        controllers.RegistroController.delete(id:Long)
 
 #Actualizar registro
 
-PUT /registro/:id             controllers.RegistroController.update(id:Long)
+PUT /paciente/registro/:id             controllers.RegistroController.update(id:Long)
 
 #Dar Registro por Id
 
-GET /registro/:id              controllers.RegistroController.getById(id:Long)
+GET /paciente/registro/:id              controllers.RegistroController.getById(id:Long)
+
+#Eliminar muchos registros
+
+DELETE /registro/:id1/:id2      controllers.RegistroController.deleteMultiple(id1:Long,id2:Long)
 
 ##########CONSEJO################
 
 #Crear Consejo
-POST /consejo            controllers.ConsejoController.create()
+POST /consejo/:idMedico/:idPaciente    controllers.ConsejoController.create(idMedico:Long,idPaciente:Long)
 
 #Dar Consejo
-GET /consejo               controllers.ConsejoController.read()
+GET /paciente/consejo/:idPaciente      controllers.ConsejoController.read(idPaciente:Long)
 
 #Eliminar Consejo
 
-DELETE /consejo/:id        controllers.ConsejoController.delete(id:Long)
+DELETE /paciente/consejo/:id     controllers.ConsejoController.delete(id:Long)
 
 #Actualizar consejo
 
-PUT /consejo/:id             controllers.ConsejoController.update(id:Long)
+PUT /paciente/consejo/:id             controllers.ConsejoController.update(id:Long)
 
 #Dar consejo por Id
 
-GET /consejo/:id              controllers.ConsejoController.getById(id:Long)
+GET /paciente/consejo/:id              controllers.ConsejoController.getById(id:Long)
 
 
 

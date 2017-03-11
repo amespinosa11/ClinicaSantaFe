@@ -2,6 +2,7 @@ package controllers;
 
 import com.avaje.ebean.Model;
 import models.Consejo;
+import models.Medico;
 import models.Paciente;
 import play.data.Form;
 import play.mvc.Controller;
@@ -17,16 +18,27 @@ import static play.libs.Json.toJson;
 public class ConsejoController extends Controller
 {
 
-    public Result create()
+    public Result create(Long idMedico,Long idPaciente)
     {
         Consejo consejo = Form.form(Consejo.class).bindFromRequest().get();
+        Medico m = Medico.find.byId(idMedico);
+        Paciente p = Paciente.find.byId(idPaciente);
+
+        consejo.setMedico(m);
+        consejo.setPaciente(p);
+        m.setConsejo(consejo);
+        p.setConsejo(consejo);
+        m.save();
+        p.save();
+
         consejo.save();
         return ok(toJson(consejo));
     }
 
-    public Result read() {
+    public Result read(Long idPaciente) {
 
-        List<Consejo> consejos = new Model.Finder(String.class, Consejo.class).all();
+        Paciente p = Paciente.find.byId(idPaciente);
+        List<Consejo>consejos = p.getConsejos();
         return ok(toJson(consejos));
     }
 

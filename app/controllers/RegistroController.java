@@ -3,9 +3,7 @@ package controllers;
 
 import com.avaje.ebean.Model;
 import com.avaje.ebeaninternal.server.lib.util.Str;
-import models.Paciente;
-import models.Registro;
-import models.Urgencia;
+import models.*;
 import play.data.Form;
 
 import play.mvc.Controller;
@@ -29,56 +27,60 @@ public class RegistroController extends Controller
     public Result create(Long pId)
     {
         Registro registro = Form.form(Registro.class).bindFromRequest().get();
+        Form f = Form.form(Registro.class).bindFromRequest();
         registro.setPaciente(pId);
-        registro.save();
-        //Paciente p = Paciente.find.byId(pId);
-        //List<Registro> registros = new Model.Finder(String.class, Registro.class).all();
-        //List<Registro> r = registros;
-        //for(int i = 0; i<registros.size();i++)
-        //{
-          //  if(registros.get(i).getPaciente().getId()==p.getId())
-            //{
-              //  r.add(registros.get(i));
+        Paciente p = Paciente.find.byId(pId);
+        p.setRegistro(registro);
 
-           // }
-        //}
-        //p.setRegistros(registros);
-        //p.update();
-
-        //p.agregarRegistro(registro);
-
-        //if(p.getRegistros().isEmpty())
-        //{
-          //  p.inicializarRegistros(registro);
-        //}
-        //else {
-          //  p.agregarRegistro(registro);
-        //}
         if(registro.getColor(pId).equals("ROJO"))
         {
-            Urgencia urgencia = Form.form(Urgencia.class).bindFromRequest().get();
-            urgencia.save();
-            //Urgencia nueva = Urgencia.find.byId(urgencia.getId());
-            urgencia.setFecha(registro.getFechaExpedicion());
+            Urgencia urgencia = new Urgencia(registro.getFechaExpedicion(),"El paciente presenta altos niveles");
             urgencia.setPaciente(pId);
-            urgencia.setDescripcion("El paciente presenta altos niveles");
+            p.setUrgencia(urgencia);
             urgencia.save();
-            return ok(toJson(registro)+"PACIENTE EN PELIGRO"+toJson(urgencia));
+            p.save();
+            registro.save();
+
+            return ok(toJson(urgencia));
         }
         if(registro.getColor(pId).equals("AMARILLO"))
         {
-            return ok(toJson(registro)+ "PACIENTE NECESITA CONSEJO MEDICO");
+
+           Notificacion notificacion = new Notificacion("Consejo","El paciente necesita un consejo");
+            notificacion.setRegistro(registro);
+            notificacion.setPaciente(p);
+            notificacion.setFecha(registro.getFechaExpedicion());
+
+            //int j = 0;
+            //while(j<p.getMedicos().size())
+            //{
+              //  Medico medico = Medico.find.byId(p.getMedicos().get(j).getId());
+               // medico.setNotificacion(notificacion);
+               // medico.save();
+                //j++;
+            //}
+            registro.setNotificacion(notificacion);
+            notificacion.save();
+            registro.save();
+            p.save();
+
+            return ok(toJson(notificacion));
         }
 
 
-        //System.out.println(registro);
+
+        registro.save();
+        p.save();
+
         return ok(toJson(registro));
     }
 
 
-    public Result read(Long pId) {
+    public Result read(Long idPaciente) {
 
-        List<Registro> registros = new Model.Finder(String.class, Registro.class).all();
+        //List<Registro> registros = new Model.Finder(String.class, Registro.class).all();
+        Paciente p = Paciente.find.byId(idPaciente);
+        List<Registro>registros = p.getRegistros();
         return ok(toJson(registros));
     }
 
@@ -87,6 +89,19 @@ public class RegistroController extends Controller
         Registro registro = Registro.find.byId(pId);
         registro.delete();
         return ok(toJson(registro));
+    }
+
+    public Result deleteMultiple(Long pId1,Long pId2)
+    {
+        while(pId1<pId2)
+        {
+            Registro registro = Registro.find.byId(pId1);
+            registro.delete();
+            pId1++;
+        }
+
+        Registro r = Registro.find.byId(pId2);
+        return ok(toJson(r));
     }
 
     public Result update(Long pId)

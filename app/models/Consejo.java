@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -8,10 +9,11 @@ import javax.persistence.*;
  * Created by am.espinosa11 on 15/02/2017.
  */
 @Entity
+@Table(name = "consejo")
 public class Consejo extends Model
 {
     /**
-     * id del Paciente.
+     * id del Consejo.
      */
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -21,10 +23,11 @@ public class Consejo extends Model
 
     private String descripcion;
 
-    @ManyToOne
+    @ManyToOne @JsonBackReference @JoinColumn(name = "medico_id")
     private Medico medico;
 
-    @ManyToOne
+    @ManyToOne  @JsonBackReference @JoinColumn(name = "paciente_id")
+
     private Paciente paciente;
 
 
@@ -55,4 +58,20 @@ public class Consejo extends Model
     }
 
     public static Find<Long,Consejo> find = new Find<Long,Consejo>(){};
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
+    }
 }
