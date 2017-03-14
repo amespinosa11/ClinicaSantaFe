@@ -44,13 +44,13 @@ public class Paciente extends Model
 
     private String sexo;
 
-    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)@JsonBackReference
+    @OneToMany(mappedBy = "paciente")@JsonBackReference
     private List<Registro> registros;
 
     @OneToOne @JsonBackReference
     private Marcapaso marcapaso;
 
-    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)@JsonBackReference
+    @OneToMany(mappedBy = "paciente")@JsonBackReference
     private List<Urgencia> urgencias;
 
     @ManyToMany
@@ -59,13 +59,13 @@ public class Paciente extends Model
     @ManyToMany @JsonBackReference
     private List<MedicoEspecialista> medicosEspecialistas;
 
-    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)@JsonBackReference
+    @OneToMany(mappedBy = "paciente")@JsonBackReference
     private List<Diagnostico> diagnosticos;
 
-    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)@JsonBackReference
+    @OneToMany(mappedBy = "paciente")@JsonBackReference
     private List<Consejo> consejos;
 
-    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)@JsonBackReference
+    @OneToMany(mappedBy = "paciente")
     private List<Notificacion>notificaciones;
 
     public Paciente(String pNombre, String pApellido,Integer pEdad, Double pPeso, Double pEstatura,String pSexo)
@@ -219,14 +219,14 @@ public class Paciente extends Model
         return medicos;
     }
 
-    public void setNotificacion(Notificacion notificacion)
-    {
-        this.notificaciones.add(notificacion);
-    }
+    //public void setNotificacion(Notificacion notificacion)
+    //{
+      //  this.notificaciones.add(notificacion);
+    //}
 
-    public List<Notificacion> getNotificaciones() {
-        return notificaciones;
-    }
+   // public List<Notificacion> getNotificaciones() {
+     //   return notificaciones;
+    //}
 
     public List<Diagnostico> getDiagnosticos() {
         return diagnosticos;
