@@ -3,14 +3,17 @@ package controllers;
 
 import com.avaje.ebean.Model;
 import com.avaje.ebeaninternal.server.lib.util.Str;
+import com.fasterxml.jackson.databind.JsonNode;
 import models.*;
 import play.data.Form;
 
+import play.data.FormFactory;
 import play.mvc.Controller;
 import play.mvc.Result;
 import scala.util.parsing.json.JSONArray;
 import views.html.index;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +30,7 @@ public class RegistroController extends Controller
     public Result create(Long pId)
     {
         Registro registro = Form.form(Registro.class).bindFromRequest().get();
-        Form f = Form.form(Registro.class).bindFromRequest();
+
         registro.setPaciente(pId);
         Paciente p = Paciente.find.byId(pId);
         p.setRegistro(registro);
@@ -41,38 +44,43 @@ public class RegistroController extends Controller
             p.save();
             registro.save();
 
-            return ok(toJson(urgencia));
+            return ok(toJson(urgencia)+registro.getColor(pId));
         }
         if(registro.getColor(pId).equals("AMARILLO"))
         {
 
-           Notificacion notificacion = new Notificacion("Consejo","El paciente necesita un consejo");
-            notificacion.setRegistro(registro);
+            Notificacion notificacion = new Notificacion("Consejo","El paciente necesita un consejo");
+            //notificacion.setRegistro(registro);
             notificacion.setPaciente(p);
             notificacion.setFecha(registro.getFechaExpedicion());
 
             //int j = 0;
             //while(j<p.getMedicos().size())
             //{
-              //  Medico medico = Medico.find.byId(p.getMedicos().get(j).getId());
-               // medico.setNotificacion(notificacion);
-               // medico.save();
-                //j++;
+            //  Medico medico = Medico.find.byId(p.getMedicos().get(j).getId());
+            // medico.setNotificacion(notificacion);
+            // medico.save();
+            //j++;
             //}
-            registro.setNotificacion(notificacion);
+            //registro.setNotificacion(notificacion);
+            //Medico medico = Medico.find.byId(1L);
+            //notificacion.setMedico(p.getMedicos().get(1));
+            //p.getMedicos().get(0).setNotificacion(notificacion);
             notificacion.save();
             registro.save();
             p.save();
 
-            return ok(toJson(notificacion));
+            return ok(toJson(notificacion)+registro.getColor(pId));
         }
 
 
 
-        registro.save();
-        p.save();
 
-        return ok(toJson(registro));
+        p.save();
+        registro.save();
+
+        return ok(toJson(registro)+registro.getColor(pId));
+
     }
 
 
@@ -120,9 +128,11 @@ public class RegistroController extends Controller
         return ok(toJson(pS));
     }
 
-    public Result getById(Long pId)
+    public Result getById(Long pId,Long idPaciente)
     {
+        Paciente p = Paciente.find.byId(idPaciente);
         Registro registro = Registro.find.byId(pId);
+
         return ok(toJson(registro));
     }
 

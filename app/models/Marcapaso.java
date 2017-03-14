@@ -47,6 +47,12 @@ public class Marcapaso extends Model
         return frecuenciaMarcapaso;
     }
 
-
     public static Find<Long,Marcapaso> find = new Find<Long,Marcapaso>(){};
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+
+
 }

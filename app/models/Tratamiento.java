@@ -46,6 +46,8 @@ public class Tratamiento extends Model {
         return fecha;
     }
 
+    public String getDescripcion() { return descripcion;}
+
     public Long getId() {
         return id;
     }

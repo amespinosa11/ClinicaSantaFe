@@ -57,5 +57,11 @@ public class Diagnostico extends Model
         this.fechaExpedicion = pFecha;
     }
 
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public static Find<Long,Diagnostico> find = new Find<Long,Diagnostico>(){};
+
 
 }
