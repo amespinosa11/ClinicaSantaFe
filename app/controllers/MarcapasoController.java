@@ -17,17 +17,24 @@ import static play.libs.Json.toJson;
 public class MarcapasoController extends Controller
 {
 
-    public Result create()
+    public Result create(Long idPaciente)
     {
-        Marcapaso marcapaso = Form.form(Marcapaso.class).bindFromRequest().get();
-        marcapaso.save();
-        return ok(toJson(marcapaso));
+        Marcapaso marca = Form.form(Marcapaso.class).bindFromRequest().get();
+        Paciente p = Paciente.find.byId(idPaciente);
+
+        marca.setPaciente(p);
+        p.iniciarMarcapaso();
+        p.save();
+
+        marca.save();
+        return ok(toJson(marca));
     }
 
-    public Result read() {
+    public Result read(Long idPaciente) {
 
-        List<Marcapaso> marcapaso = new Model.Finder(String.class, Marcapaso.class).all();
-        return ok(toJson(marcapaso));
+        Paciente p = Paciente.find.byId(idPaciente);
+        Marcapaso marca = p.getMarcapaso();
+        return ok(toJson(marca));
     }
 
     public Result delete(Long pId)
@@ -38,18 +45,20 @@ public class MarcapasoController extends Controller
     }
 
     public Result update(Long pId) {
-        Marcapaso marcapaso = Form.form(Marcapaso.class).bindFromRequest().get();
+        Marcapaso marca = Form.form(Marcapaso.class).bindFromRequest().get();
         Marcapaso pS = Marcapaso.find.byId(pId);
 
-        pS.setFrecuenciaMarcapasos(marcapaso.getFrecuencia());
+        pS.setFrecuenciaMarcapasos(marca.getFrecuencia());
 
         return ok(toJson(pS));
     }
 
     public Result getById(Long pId)
     {
-        Marcapaso marcapaso = Marcapaso.find.byId(pId);
-        return ok(toJson(marcapaso));
+        Marcapaso dia = Marcapaso.find.byId(pId);
+        return ok(toJson(dia));
     }
+
+
 
 }

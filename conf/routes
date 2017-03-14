@@ -130,23 +130,49 @@ GET /paciente/consejo/:id              controllers.ConsejoController.getById(id:
 #Da los registros de un paciente en un rango de fechas
 GET /paciente/:pid/registroRangoFechas/:f1/:f2      controllers.PacienteController.readRegistrosDePacienteRangoFechas(pid:Long,f1:Long,f2:Long)
 
-########## MARCAPASO ###################
+########## DIAGNOSTICO ###################
 
 
 #Crear Marcapaso
-POST /marcapaso            controllers.MarcapasoController.create()
+POST /diagnostico/:idPaciente           controllers.DiagnosticoController.create(idPaciente:Long)
 
 #Dar Marcapaso
-GET /marcapaso               controllers.MarcapasoController.read()
+GET /diagnostico/:idPaciente               controllers.DiagnosticoController.read(idPaciente:Long)
 
 #Eliminar Marcapaso
 
-DELETE /marcapaso/:id        controllers.MarcapasoController.delete(id:Long)
+DELETE /paciente/diagnostico/:id        controllers.DiagnosticoController.delete(id:Long)
 
-#Actualizar Marcapaso
+#Actualizar Diagnostico
 
-PUT /marcapaso/:id             controllers.MarcapasoController.update(id:Long)
+PUT /paciente/diagnostico/:id             controllers.DiagnosticoController.update(id:Long)
 
-#Dar Marcapaso por Id
+#Dar diagnostico por Id
 
-GET /marcapaso/:id              controllers.MarcapasoController.getById(id:Long)
+GET /paciente/diagnostico/:id              controllers.DiagnosticoController.getById(id:Long)
+
+
+
+########## MARCAPASO ###################
+
+
+
+
+#Crear Marcapaso
+POST /marcapaso/:idPaciente           controllers.MarcapasoController.create(idPaciente:Long)
+
+#Dar Marcapaso
+GET /marcapaso/:idPaciente               controllers.MarcapasoController.read(idPaciente:Long)
+
+#Eliminar Marcapaso
+
+DELETE /paciente/marcapaso/:id        controllers.MarcapasoController.delete(id:Long)
+
+#Actualizar Diagnostico
+
+PUT /paciente/marcapaso/:id             controllers.MarcapasoController.update(id:Long)
+
+#Dar diagnostico por Id
+
+
+GET /paciente/marcapaso/:id              controllers.MarcapasoController.getById(id:Long)
