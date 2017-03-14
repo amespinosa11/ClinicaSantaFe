@@ -53,4 +53,6 @@ public class MedicoEspecialistaController extends Controller
         MedicoEspecialista medico = MedicoEspecialista.find.byId(pId);
         return ok(toJson(medico));
     }
+
+    //loquesea
 }
