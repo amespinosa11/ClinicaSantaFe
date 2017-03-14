@@ -31,8 +31,11 @@ public class Medico extends Model
      */
     private String apellido;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "medico") @JsonBackReference
+    @OneToMany(mappedBy = "medico") @JsonBackReference
     private List<Consejo> consejos;
+
+    @OneToMany(mappedBy = "medico")
+    private List<Notificacion>notificaciones;
 
     @ManyToMany
     private List<Paciente> pacientes;
@@ -76,7 +79,7 @@ public class Medico extends Model
         this.pacientes.add(paciente);
     }
 
-
-
-
+    public void setNotificacion(Notificacion notificaciones) {
+        this.notificaciones.add(notificaciones);
+    }
 }

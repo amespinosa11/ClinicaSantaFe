@@ -39,22 +39,27 @@ public class Registro extends Model
     /**
      * La frecuencia cardiaca del paciente.
      */
+
     private Integer frecuenciaCardiaca;
+
 
     private Integer presionSanguinea1;
 
+
     private Integer presionSanguinea2;
+
 
     private Integer nivelEstres;
 
+
     private Integer nivelActividadFisica;
 
-    @ManyToOne @JsonBackReference
-    @JoinColumn(name = "paciente_id")
+    @ManyToOne
+    //@JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
-    @OneToOne @JsonBackReference
-    private Notificacion notificacion;
+    //@OneToOne(mappedBy = "registro")
+    //private Notificacion notificacion;
 
     public Registro(Date pDia,Integer p1,Integer p2, Integer p3,Integer p4,Integer p5)
     {
@@ -149,13 +154,13 @@ public class Registro extends Model
 
     }
 
-    public void setNotificacion(Notificacion notificacion) {
-        this.notificacion = notificacion;
-    }
+    //public void setNotificacion(Notificacion notificacion) {
+      //  this.notificacion = notificacion;
+    //}
 
-    public Notificacion getNotificacion() {
-        return notificacion;
-    }
+    //public Notificacion getNotificacion() {
+      //  return notificacion;
+    //}
 
     public static Find<Long,Registro> find = new Find<Long,Registro>(){};
 }

@@ -39,14 +39,16 @@ public class Notificacion extends Model
     @Formats.DateTime(pattern="dd-MM-yyyy")
     private Date fecha;
 
-
+    @ManyToOne @JsonBackReference
+    //@JoinColumn(name = "medico_id")
+    private Medico medico;
 
     @ManyToOne @JsonBackReference
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
-    @OneToOne @JsonBackReference
-    private Registro registro;
+   // @OneToOne @JsonBackReference
+    //private Registro registro;
 
     public Notificacion(String pTipo, String descripcion)
     {
@@ -55,6 +57,9 @@ public class Notificacion extends Model
 
     }
 
+    public void setMedico(Medico medico) {
+        this.medico = medico;
+    }
 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
@@ -68,9 +73,9 @@ public class Notificacion extends Model
         this.fecha = fecha;
     }
 
-    public void setRegistro(Registro registro) {
-        this.registro = registro;
-    }
+    //public void setRegistro(Registro registro) {
+      // this.registro = registro;
+    //}
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
@@ -90,9 +95,9 @@ public class Notificacion extends Model
         return paciente;
     }
 
-    public Registro getRegistro() {
-        return registro;
-    }
+    //public Registro getRegistro() {
+      //  return registro;
+    //}
 
     public String getDescripcion() {
         return descripcion;

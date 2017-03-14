@@ -97,7 +97,7 @@ PUT /paciente/registro/:id             controllers.RegistroController.update(id:
 
 #Dar Registro por Id
 
-GET /paciente/registro/:id              controllers.RegistroController.getById(id:Long)
+GET /paciente/registro/:id/:idPaciente              controllers.RegistroController.getById(id:Long,idPaciente:Long)
 
 #Eliminar muchos registros
 
