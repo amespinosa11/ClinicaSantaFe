@@ -197,7 +197,7 @@ PUT /paciente/examen/:id             controllers.ExamenController.update(id:Long
 
 #Dar examen por Id
 
-GET /paciente/examen/:id              controllers.ExamenController.getById(id:Long)
+GET /examen/:id              controllers.ExamenController.getById(id:Long)
 
 ##########TRATAMIENTO################
 
@@ -217,4 +217,4 @@ PUT /paciente/tratamiento/:id             controllers.TratamientoController.upda
 
 #Dar tratamiento por Id
 
-GET /paciente/tratamiento/:id              controllers.TratamientoController.getById(id:Long)
+GET /tratamiento/:id              controllers.TratamientoController.getById(id:Long)

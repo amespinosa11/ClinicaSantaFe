@@ -59,8 +59,6 @@ create table notificacion (
   fecha                     timestamp,
   medico_id                 bigint,
   paciente_id               bigint,
-  registro_id               bigint,
-  constraint uq_notificacion_registro_id unique (registro_id),
   constraint pk_notificacion primary key (id))
 ;
 
@@ -135,34 +133,18 @@ alter table marcapaso add constraint fk_marcapaso_medicoespecialist_5 foreign ke
 create index ix_marcapaso_medicoespecialist_5 on marcapaso (medico_especialista_id);
 alter table marcapaso add constraint fk_marcapaso_paciente_6 foreign key (paciente_id) references paciente (id);
 create index ix_marcapaso_paciente_6 on marcapaso (paciente_id);
-alter table notificacion add constraint fk_notificacion_paciente_7 foreign key (paciente_id) references paciente (id);
-create index ix_notificacion_paciente_7 on notificacion (paciente_id);
-alter table notificacion add constraint fk_notificacion_registro_8 foreign key (registro_id) references registro (id);
-create index ix_notificacion_registro_8 on notificacion (registro_id);
+alter table notificacion add constraint fk_notificacion_medico_7 foreign key (medico_id) references medico (id);
+create index ix_notificacion_medico_7 on notificacion (medico_id);
+alter table notificacion add constraint fk_notificacion_paciente_8 foreign key (paciente_id) references paciente (id);
+create index ix_notificacion_paciente_8 on notificacion (paciente_id);
 alter table paciente add constraint fk_paciente_marcapaso_9 foreign key (marcapaso_id) references marcapaso (id);
 create index ix_paciente_marcapaso_9 on paciente (marcapaso_id);
 alter table registro add constraint fk_registro_paciente_10 foreign key (paciente_id) references paciente (id);
 create index ix_registro_paciente_10 on registro (paciente_id);
-alter table registro add constraint fk_registro_notificacion_11 foreign key (notificacion_id) references notificacion (id);
-create index ix_registro_notificacion_11 on registro (notificacion_id);
-alter table tratamiento add constraint fk_tratamiento_paciente_12 foreign key (paciente_id) references paciente (id);
-create index ix_tratamiento_paciente_12 on tratamiento (paciente_id);
-alter table urgencia add constraint fk_urgencia_paciente_13 foreign key (paciente_id) references paciente (id);
-create index ix_urgencia_paciente_13 on urgencia (paciente_id);
-alter table marcapaso add constraint fk_marcapaso_medicoespecialist_4 foreign key (medico_especialista_id) references medicoespecialista (id);
-create index ix_marcapaso_medicoespecialist_4 on marcapaso (medico_especialista_id);
-alter table marcapaso add constraint fk_marcapaso_paciente_5 foreign key (paciente_id) references paciente (id);
-create index ix_marcapaso_paciente_5 on marcapaso (paciente_id);
-alter table notificacion add constraint fk_notificacion_medico_6 foreign key (medico_id) references medico (id);
-create index ix_notificacion_medico_6 on notificacion (medico_id);
-alter table notificacion add constraint fk_notificacion_paciente_7 foreign key (paciente_id) references paciente (id);
-create index ix_notificacion_paciente_7 on notificacion (paciente_id);
-alter table paciente add constraint fk_paciente_marcapaso_8 foreign key (marcapaso_id) references marcapaso (id);
-create index ix_paciente_marcapaso_8 on paciente (marcapaso_id);
-alter table registro add constraint fk_registro_paciente_9 foreign key (paciente_id) references paciente (id);
-create index ix_registro_paciente_9 on registro (paciente_id);
-alter table urgencia add constraint fk_urgencia_paciente_10 foreign key (paciente_id) references paciente (id);
-create index ix_urgencia_paciente_10 on urgencia (paciente_id);
+alter table tratamiento add constraint fk_tratamiento_paciente_11 foreign key (paciente_id) references paciente (id);
+create index ix_tratamiento_paciente_11 on tratamiento (paciente_id);
+alter table urgencia add constraint fk_urgencia_paciente_12 foreign key (paciente_id) references paciente (id);
+create index ix_urgencia_paciente_12 on urgencia (paciente_id);
 
 
 
