@@ -68,6 +68,12 @@ public class Paciente extends Model
     @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)@JsonBackReference
     private List<Notificacion>notificaciones;
 
+    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)@JsonBackReference
+    private List<Examen> examenes;
+
+    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)@JsonBackReference
+    private List<Tratamiento> tratamientos;
+
     public Paciente(String pNombre, String pApellido,Integer pEdad, Double pPeso, Double pEstatura,String pSexo)
     {
         this.nombre = pNombre;
@@ -180,6 +186,16 @@ public class Paciente extends Model
         this.consejos.add(consejo);
     }
 
+    public void setExamen(Examen examen)
+    {
+        this.examenes.add(examen);
+    }
+
+    public void setTratamiento(Tratamiento tratamiento)
+    {
+        this.tratamientos.add(tratamiento);
+    }
+
     public void setMedicoEspecialista(MedicoEspecialista medicoEspecialista)
     {
         this.medicosEspecialistas.add(medicoEspecialista);
@@ -226,6 +242,14 @@ public class Paciente extends Model
 
     public List<Notificacion> getNotificaciones() {
         return notificaciones;
+    }
+
+    public List<Tratamiento> getTratamientos() {
+        return tratamientos;
+    }
+
+    public List<Examen> getExamenes() {
+        return examenes;
     }
 
     public List<Diagnostico> getDiagnosticos() {

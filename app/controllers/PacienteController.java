@@ -42,6 +42,7 @@ public class PacienteController extends Controller
         Paciente paciente = Paciente.find.byId(idPaciente);
         Medico medico = Medico.find.byId(idMedico);
         paciente.setMedico(medico);
+        medico.setPaciente(paciente);
         paciente.save();
         return ok(toJson(paciente));
     }

@@ -150,3 +150,23 @@ PUT /marcapaso/:id             controllers.MarcapasoController.update(id:Long)
 #Dar Marcapaso por Id
 
 GET /marcapaso/:id              controllers.MarcapasoController.getById(id:Long)
+
+##########EXAMEN################
+
+#Crear Examen para un paciente
+POST /examen/:idPaciente    controllers.ExamenController.create(idPaciente:Long)
+
+#Dar Examenes de un paciente
+GET /paciente/examen/:idPaciente      controllers.ExamenController.read(idPaciente:Long)
+
+#Eliminar Examen
+
+DELETE /paciente/examen/:id     controllers.ExamenController.delete(id:Long)
+
+#Actualizar examen
+
+PUT /paciente/examen/:id             controllers.ExamenController.update(id:Long)
+
+#Dar examen por Id
+
+GET /paciente/examen/:id              controllers.ExamenController.getById(id:Long)
