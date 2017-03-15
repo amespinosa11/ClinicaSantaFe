@@ -46,7 +46,9 @@ public class ExamenController extends Controller {
         Examen pS = Examen.find.byId(pId);
 
         pS.setFecha(examen.getFecha());
-        pS.setDescripcion(examen.getDescripcion());
+        pS.setResultados(examen.getResultados());
+        pS.setTipo(examen.getTipo());
+
 
         return ok(toJson(pS));
     }

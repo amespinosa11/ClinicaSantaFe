@@ -24,7 +24,11 @@ public class Tratamiento extends Model {
     private String descripcion;
 
     @Formats.DateTime(pattern="dd-MM-yyyy")
-    private Date fecha;
+    private Date fechaInicio;
+
+    @Formats.DateTime(pattern="dd-MM-yyyy")
+    private Date fechaFin;
+
 
     @ManyToOne @JsonBackReference
     @JoinColumn(name = "paciente_id")
@@ -38,12 +42,20 @@ public class Tratamiento extends Model {
         this.descripcion = descripcion;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public Date getFechaFin() {
+        return fechaFin;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
     public String getDescripcion() { return descripcion;}

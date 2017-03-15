@@ -133,13 +133,13 @@ GET /paciente/:pid/registroRangoFechas/:f1/:f2      controllers.PacienteControll
 ########## DIAGNOSTICO ###################
 
 
-#Crear Marcapaso
-POST /diagnostico/:idPaciente           controllers.DiagnosticoController.create(idPaciente:Long)
+#Crear
+POST /paciente/diagnostico/:idPaciente           controllers.DiagnosticoController.create(idPaciente:Long)
 
-#Dar Marcapaso
-GET /diagnostico/:idPaciente               controllers.DiagnosticoController.read(idPaciente:Long)
+#Dar
+GET /paciente/diagnostico/:idPaciente               controllers.DiagnosticoController.read(idPaciente:Long)
 
-#Eliminar Marcapaso
+#Eliminar
 
 DELETE /paciente/diagnostico/:id        controllers.DiagnosticoController.delete(id:Long)
 
@@ -182,7 +182,7 @@ GET /marcapaso/:id              controllers.MarcapasoController.getById(id:Long)
 ##########EXAMEN################
 
 #Crear Examen para un paciente
-POST /examen/:idPaciente    controllers.ExamenController.create(idPaciente:Long)
+POST /paciente/examen/:idPaciente    controllers.ExamenController.create(idPaciente:Long)
 
 #Dar Examenes de un paciente
 GET /paciente/examen/:idPaciente      controllers.ExamenController.read(idPaciente:Long)
@@ -202,7 +202,7 @@ GET /examen/:id              controllers.ExamenController.getById(id:Long)
 ##########TRATAMIENTO################
 
 #Crear Tratamiento para un paciente
-POST /tratamiento/:idPaciente    controllers.TratamientoController.create(idPaciente:Long)
+POST /paciente/tratamiento/:idPaciente    controllers.TratamientoController.create(idPaciente:Long)
 
 #Dar Examenes de un paciente
 GET /paciente/tratamiento/:idPaciente      controllers.TratamientoController.read(idPaciente:Long)

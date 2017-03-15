@@ -46,7 +46,8 @@ public class TratamientoController extends Controller {
         Tratamiento tratamiento = Form.form(Tratamiento.class).bindFromRequest().get();
         Tratamiento pS = Tratamiento.find.byId(pId);
 
-        pS.setFecha(tratamiento.getFecha());
+        pS.setFechaFin(tratamiento.getFechaFin());
+        pS.setFechaInicio(tratamiento.getFechaInicio());
         pS.setDescripcion(tratamiento.getDescripcion());
 
         return ok(toJson(pS));

@@ -22,7 +22,8 @@ create table diagnostico (
 
 create table examen (
   id                        bigserial not null,
-  descripcion               varchar(255),
+  tipo                      varchar(255),
+  resultados                varchar(255),
   fecha                     timestamp,
   paciente_id               bigint,
   constraint pk_examen primary key (id))
@@ -90,7 +91,8 @@ create table registro (
 create table tratamiento (
   id                        bigserial not null,
   descripcion               varchar(255),
-  fecha                     timestamp,
+  fecha_inicio              timestamp,
+  fecha_fin                 timestamp,
   paciente_id               bigint,
   constraint pk_tratamiento primary key (id))
 ;

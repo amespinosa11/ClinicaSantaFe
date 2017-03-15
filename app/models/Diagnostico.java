@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Model;
+import play.data.format.Formats;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,6 +22,7 @@ public class Diagnostico extends Model
     /**
      * Fecha de Expedicion.
      */
+    @Formats.DateTime(pattern="dd-MM-yyyy")
     private Date fechaExpedicion;
 
     /**

@@ -21,7 +21,9 @@ public class Examen extends Model {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    private String descripcion;
+    private String tipo;
+
+    private String resultados;
 
     @Formats.DateTime(pattern="dd-MM-yyyy")
     private Date fecha;
@@ -30,9 +32,10 @@ public class Examen extends Model {
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
-    public Examen(String pDescripcion, Date pFecha )
+    public Examen(String pTipo, Date pFecha,String pResultados )
     {
-        this.descripcion = pDescripcion;
+        this.tipo = pTipo;
+        this.resultados = pResultados;
         this.fecha = pFecha;
     }
 
@@ -41,8 +44,20 @@ public class Examen extends Model {
         this.paciente = paciente;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public String getResultados() {
+        return resultados;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setResultados(String resultados) {
+        this.resultados = resultados;
     }
 
     public void setFecha(Date fecha) {
@@ -53,7 +68,6 @@ public class Examen extends Model {
         return fecha;
     }
 
-    public String getDescripcion(){ return descripcion; }
 
     public Long getId() {
         return id;
