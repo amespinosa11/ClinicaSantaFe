@@ -24,6 +24,8 @@ import models.*;
 
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
+import javax.swing.text.html.HTMLDocument;
+
 /**
  * Created by am.espinosa11 on 12/02/2017.
  */
@@ -105,15 +107,31 @@ public class PacienteController extends Controller
     //}
 
     public Result readRegistrosDePacienteRangoFechas(Long pId, Long f1, Long f2) {
-        List<Registro> registros = new Model.Finder(String.class, Registro.class).all();
-        List<Registro> registrosPaciente = new ArrayList<Registro>();
-        for(Registro registro:registros) {
-            Date fecha = registro.getFechaExpedicion();
-            Date fecha1 = new Date(f1);
-            Date fecha2 = new Date(f2);
-            if (fecha.after(fecha1) && fecha.before(fecha2) )
-                registrosPaciente.add(registro);
+        Paciente p = Paciente.find.byId(pId);
+        List<Registro> registros = p.getRegistros();
+        List<Registro> registrosPaciente = null;
+        //for(Registro registro:registros) {
+          //  Date fecha = registro.getFechaExpedicion();
+        int i = 0;
+        Date fecha1 = new Date(f1);
+        Date fecha2 = new Date(f2);
+        while(i<registros.size())
+        {
+            if(registros.get(i).getFechaExpedicion().after(fecha1))
+            {
+               registrosPaciente.add(registros.get(i));
+            }
+            i++;
         }
+
+           // String v = "SI";
+            //if(registros.get(1).getFechaExpedicion().after(fecha1))
+            //{
+              //  return ok(toJson(registros)+v);
+            //}
+            //if (fecha.after(fecha1) && fecha.before(fecha2) )
+              //  registrosPaciente.add(registro);
+        //}
 
         return ok(toJson(registrosPaciente));
     }
