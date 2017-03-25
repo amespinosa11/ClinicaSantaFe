@@ -39,6 +39,9 @@
    Falta leer cada sensor (por variables "sensor...."), extraer la información de cada uno
    y ponerlo en la variable int correspondiente.  
    */
+   //frecuenciaCardiaca = analogRead(sensorFrecuenciaCardiaca);
+   //presionSanguinea1 = analogRead(sensorFrecuenciaCardiaca);
+   //presionSanguinea2 = analogRead(sensorFrecuenciaCardiaca);
    //Numeros random (que tengan sentido) para cada valor. Luego toca hacer que se lea desde el pin
    frecuenciaCardiaca = random(50,100);
    presionSanguinea1 = random(100,180);

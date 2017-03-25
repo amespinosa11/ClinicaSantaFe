@@ -1,7 +1,8 @@
 EXPERIMENTO 1
 Se encuentran implementados los entregables para el primer experimento.
 Los documentos del análisis respectivo se encuentran en la carpeta "archivos"
-
+Registros del microcontrolador se realizan con: POST http://172.24.42.44:9000/paciente/registro/1
+Con un JSON que incluya los atributos del mismo (disponibles en clase Registro)
 
 
 
