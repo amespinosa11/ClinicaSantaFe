@@ -17,11 +17,17 @@ GET     /message                    controllers.AsyncController.message()
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
 #######PACIENTE############################
+#Login Paciente
+GET     /paciente                          controllers.PacienteController.login()
+
+#Autenticarse Paciente
+POST    /paciente                      controllers.PacienteController.authenticar()
+
 #Crear Paciente
-POST /paciente                 controllers.PacienteController.create()
+POST /clinica/paciente                 controllers.PacienteController.create()
 
 #Dar pacientes
-GET /paciente                   controllers.PacienteController.read()
+GET /clinica/paciente                   controllers.PacienteController.read()
 
 #Eliminar paciente
 DELETE /paciente/:id            controllers.PacienteController.delete(id:Long)

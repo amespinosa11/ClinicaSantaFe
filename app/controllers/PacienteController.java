@@ -22,6 +22,8 @@ import static play.libs.Json.toJson;
 
 import models.*;
 
+import views.html.loginPaciente;
+
 
 /**
  * Created by am.espinosa11 on 12/02/2017.
@@ -29,6 +31,26 @@ import models.*;
 //@With(Secure.class)
 public class PacienteController extends Controller
 {
+
+    public Result login()
+    {
+        Form f = Form.form(LoginFormDataPaciente.class);
+        return ok(loginPaciente.render());
+    }
+
+    public Result authenticar() {
+        Form<LoginFormDataPaciente> loginFormPaic = Form.form(LoginFormDataPaciente.class).bindFromRequest();
+
+        if (loginFormPaic.hasErrors()) {
+            return badRequest(loginPaciente.render());
+        } else {
+            session().clear();
+            session("emailPac", loginFormPaic.get().emailPac);
+            return redirect(
+                    routes.PacienteController.read()
+            );
+        }
+    }
 
     public Result create()
     {

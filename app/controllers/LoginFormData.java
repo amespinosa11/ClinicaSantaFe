@@ -1,5 +1,6 @@
 package controllers;
 
+import com.avaje.ebean.Model;
 import models.Paciente;
 
 import play.data.validation.ValidationError;
@@ -23,6 +24,8 @@ public class LoginFormData
         return null;
 
     }
+
+
 
 
 }
