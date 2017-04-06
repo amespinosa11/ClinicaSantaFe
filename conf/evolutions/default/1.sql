@@ -67,10 +67,12 @@ create table paciente (
   id                        bigserial not null,
   nombre                    varchar(255),
   apellido                  varchar(255),
+  correo                    varchar(255),
   edad                      integer,
   peso                      float,
   estatura                  float,
   sexo                      varchar(255),
+  contraseña                varchar(255),
   marcapaso_id              bigint,
   constraint uq_paciente_marcapaso_id unique (marcapaso_id),
   constraint pk_paciente primary key (id))

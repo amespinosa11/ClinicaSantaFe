@@ -1,8 +1,11 @@
 package controllers;
 
+import play.data.Form;
 import play.mvc.*;
-
+import controllers.*;
 import views.html.*;
+import views.html.helper.form;
+import play.data.*;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -17,7 +20,28 @@ public class HomeController extends Controller {
      * <code>GET</code> request with a path of <code>/</code>.
      */
     public Result index() {
-        return ok(index.render("Clinica Santa Fe"));
+        return ok(index.render("Home"));
     }
+
+
+    public Result login()
+    {
+        Form f = Form.form(LoginFormData.class);
+        return ok(login.render());
+    }
+
+    public Result authenticate() {
+        Form<LoginFormData> loginForm = Form.form(LoginFormData.class).bindFromRequest();
+        if (loginForm.hasErrors()) {
+            return badRequest(login.render());
+        } else {
+            session().clear();
+            session("email", loginForm.get().email);
+            return redirect(
+                    routes.HomeController.index()
+            );
+        }
+    }
+
 
 }

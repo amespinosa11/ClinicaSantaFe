@@ -1,12 +1,12 @@
 package controllers;
 
 
+
 import com.avaje.ebean.Model;
-import com.fasterxml.jackson.databind.JsonNode;
 import models.Paciente;
 import play.data.Form;
 
-import play.libs.Json;
+
 import play.mvc.Controller;
 import play.mvc.Result;
 
@@ -22,13 +22,11 @@ import static play.libs.Json.toJson;
 
 import models.*;
 
-import javax.inject.Inject;
-import javax.persistence.PersistenceException;
-import javax.swing.text.html.HTMLDocument;
 
 /**
  * Created by am.espinosa11 on 12/02/2017.
  */
+//@With(Secure.class)
 public class PacienteController extends Controller
 {
 
@@ -49,6 +47,8 @@ public class PacienteController extends Controller
         return ok(toJson(paciente));
     }
 
+
+    //@Security.Authenticated(Secured.class)
     public Result read() {
 
         List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();
@@ -69,6 +69,7 @@ public class PacienteController extends Controller
 
         pS.setApellido(paciente.getApellido());
         pS.setNombre(paciente.getNombre());
+        pS.setCorreo(paciente.getCorreo());
         pS.setEdad(paciente.getEdad());
         pS.setEstatura(paciente.getEstatura());
         pS.setPeso(paciente.getPeso());
@@ -83,6 +84,8 @@ public class PacienteController extends Controller
         Paciente paciente = Paciente.find.byId(pId);
         return ok(toJson(paciente));
     }
+
+
 
     //public Result createRegistroDePaciente(Long pId)
     //{

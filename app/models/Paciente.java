@@ -1,8 +1,10 @@
 package models;
 
+
 import com.avaje.ebean.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.JsonNode;
+import play.mvc.With;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -36,6 +38,8 @@ public class Paciente extends Model
      */
     private String apellido;
 
+    private String correo;
+
     private Integer edad;
 
     private Double peso;
@@ -44,11 +48,15 @@ public class Paciente extends Model
 
     private String sexo;
 
+    @JsonBackReference
+    private String contraseña;
+
     @OneToMany(mappedBy = "paciente")@JsonBackReference
     private List<Registro> registros;
 
     @OneToOne @JsonBackReference
     private Marcapaso marcapaso;
+
 
     @OneToMany(mappedBy = "paciente")@JsonBackReference
     private List<Urgencia> urgencias;
@@ -74,10 +82,11 @@ public class Paciente extends Model
     @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)@JsonBackReference
     private List<Tratamiento> tratamientos;
 
-    public Paciente(String pNombre, String pApellido,Integer pEdad, Double pPeso, Double pEstatura,String pSexo)
+    public Paciente(String pNombre, String pApellido,String pCorreo,Integer pEdad, Double pPeso, Double pEstatura,String pSexo)
     {
         this.nombre = pNombre;
         this.apellido = pApellido;
+        this.correo = pCorreo;
         this.edad = pEdad;
         this.peso = pPeso;
         this.estatura = pEstatura;
@@ -98,6 +107,10 @@ public class Paciente extends Model
         return nombre;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
+
     public Double getEstatura() {
         return estatura;
     }
@@ -114,8 +127,16 @@ public class Paciente extends Model
         return sexo;
     }
 
+    public String getContraseña() {
+        return contraseña;
+    }
+
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public void setNombre(String nombre) {
@@ -140,6 +161,8 @@ public class Paciente extends Model
 
     public static Find<Long,Paciente> find = new Find<Long,Paciente>(){};
 
+    public static Find<String,Paciente> findbyEmail = new Find<String,Paciente>(){};
+
     public Integer frecuenciaCardiacaMaxima()
     {
         Integer max = 0;
@@ -155,6 +178,14 @@ public class Paciente extends Model
         return max;
     }
 
+    public void setContraseña(String contraseñaAntigua, String contsNueva)
+    {
+        if(this.contraseña.equals(contraseñaAntigua))
+        {
+            this.contraseña = contsNueva;
+        }
+
+    }
 
     /**
      * Para dos fechas, responde con el arreglo de registros que están dentro de este rango
@@ -259,4 +290,14 @@ public class Paciente extends Model
     public Marcapaso getMarcapaso() {
         return marcapaso;
     }
+
+    public boolean isValid(String email, String password)
+    {
+        return ((email != null)
+                &&
+                (password != null)
+                &&
+                contraseña.equals(password));
+    }
+
 }
