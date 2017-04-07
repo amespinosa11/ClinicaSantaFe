@@ -3,7 +3,7 @@ package controllers;
 import com.avaje.ebean.Model;
 import models.Medico;
 import models.Paciente;
-import models.MedicoEspecialista
+import models.MedicoEspecialista;
 
 import java.util.List;
 
