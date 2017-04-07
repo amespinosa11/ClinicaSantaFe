@@ -22,7 +22,7 @@ public class LoginFormDataMedico
 
     public String validate()
     {
-        if (emailMed.equals("carlos@hotmal.com")||passwordMed.equals("sinnada")) {
+        if (emailMed.equals("carlos@hotmal.com")||passwordMed.equals("ana")) {
             return "Invalid user or password";
         }
         return null;

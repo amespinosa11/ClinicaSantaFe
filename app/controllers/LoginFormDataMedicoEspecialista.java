@@ -23,7 +23,7 @@ public class LoginFormDataMedicoEspecialista
 
     public String validate()
     {
-        if (emailMedEsp.equals("juancho@hotmal.com")||passwordMedEsp.equals("sinnada")) {
+        if (emailMedEsp.equals("juancho@hotmal.com")||passwordMedEsp.equals("ana")) {
             return "Invalid user or password";
         }
         return null;

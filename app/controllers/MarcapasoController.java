@@ -6,6 +6,7 @@ import models.Paciente;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import static play.libs.Json.toJson;
  */
 public class MarcapasoController extends Controller
 {
+
 
     public Result create(Long idPaciente)
     {
@@ -44,6 +46,7 @@ public class MarcapasoController extends Controller
         return ok(toJson(marcapaso));
     }
 
+    @Security.Authenticated(SecuredMedicoEspecialista.class)
     public Result update(Long pId) {
         Marcapaso marca = Form.form(Marcapaso.class).bindFromRequest().get();
         Marcapaso pS = Marcapaso.find.byId(pId);

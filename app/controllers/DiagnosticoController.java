@@ -7,6 +7,7 @@ import models.Paciente;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class DiagnosticoController extends Controller
         return ok(toJson(diagnostico));
     }
 
+    @Security.Authenticated(Secured.class)
     public Result read(Long idPaciente) {
 
         Paciente p = Paciente.find.byId(idPaciente);
