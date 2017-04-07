@@ -9,6 +9,11 @@ import play.mvc.Result;
 import java.util.List;
 
 import static play.libs.Json.toJson;
+import views.html.loginMedico;
+import views.html.loginPaciente;
+import views.html.loginMedicoEspecialista;
+
+
 
 /**
  * Created by am.espinosa11 on 14/02/2017.
