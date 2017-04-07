@@ -1,6 +1,7 @@
 package controllers;
 
 
+import Seguridad.HashGenerator;
 import com.avaje.ebean.Model;
 import com.avaje.ebeaninternal.server.lib.util.Str;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -30,6 +31,12 @@ public class RegistroController extends Controller
     public Result create(Long pId)
     {
         Registro registro = Form.form(Registro.class).bindFromRequest().get();
+
+        if(!hashCoinciden(registro))
+        {
+            return badRequest("Datos han sido corrompidos: hash no coincide con original");
+        }
+
 
         registro.setPaciente(pId);
         Paciente p = Paciente.find.byId(pId);
@@ -134,6 +141,26 @@ public class RegistroController extends Controller
         Registro registro = Registro.find.byId(pId);
 
         return ok(toJson(registro));
+    }
+
+    /**
+     * Verifica que el codigo hash enviado por parámetro sea el mismo al generado tras leer los datos.
+     * Esto permite asegurar la integridad de los datos de los sensores del registro.
+     * @param registro registro ingresado del que se quiere analizar la integridad
+     * @return true si hash enviado y generado coinciden, false si no
+     */
+    private boolean hashCoinciden(Registro registro)
+    {
+        boolean coinciden;
+        String mensajePreHash = registro.getFrecuenciaCardiaca() +"/" + registro.getPresionSanguinea1() + "/"
+                + registro.getPresionSanguinea2() + "/" + registro.getNivelEstres();
+        String hashGenerado = HashGenerator.generarHashSHA1(mensajePreHash.trim());
+        coinciden = hashGenerado.equals(registro.getCodigoHash());
+
+
+        return coinciden;
+
+
     }
 
 }

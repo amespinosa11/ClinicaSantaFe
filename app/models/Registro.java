@@ -54,6 +54,9 @@ public class Registro extends Model
 
     private Integer nivelActividadFisica;
 
+    @JsonBackReference
+    private String codigoHash;
+
     @ManyToOne
     //@JoinColumn(name = "paciente_id")
     private Paciente paciente;
@@ -61,7 +64,7 @@ public class Registro extends Model
     //@OneToOne(mappedBy = "registro")
     //private Notificacion notificacion;
 
-    public Registro(Date pDia,Integer p1,Integer p2, Integer p3,Integer p4,Integer p5)
+    public Registro(Date pDia,Integer p1,Integer p2, Integer p3,Integer p4,Integer p5, String pHash)
     {
         this.fechaExpedicion = pDia;
         this.presionSanguinea1 = p1;
@@ -69,6 +72,7 @@ public class Registro extends Model
         this.frecuenciaCardiaca = p3;
         this.nivelEstres = p4;
         this.nivelActividadFisica = p5;
+        this.codigoHash = pHash;
     }
 
     public Date getFechaExpedicion() {
@@ -94,6 +98,10 @@ public class Registro extends Model
     public Integer getPresionSanguinea2() {
         return presionSanguinea2;
     }
+
+    public String getCodigoHash() { return codigoHash;}
+
+    public void setCodigoHash(String codigoHash) {this.codigoHash = codigoHash;}
 
     public void setPresionSanguinea1(Integer presionSanguinea1) {
         this.presionSanguinea1 = presionSanguinea1;

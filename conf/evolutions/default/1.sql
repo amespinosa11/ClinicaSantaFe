@@ -88,6 +88,7 @@ create table registro (
   presion_sanguinea2        integer,
   nivel_estres              integer,
   nivel_actividad_fisica    integer,
+  codigo_hash               varchar(255),
   paciente_id               bigint,
   constraint pk_registro primary key (id))
 ;
