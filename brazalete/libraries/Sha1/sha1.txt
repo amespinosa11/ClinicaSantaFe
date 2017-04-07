@@ -1,2 +1,0 @@
-Librería usada. Implementa SHA1 en el microcontrolador.
-Permite asegurar integridad de datos que van desde el brazalete
