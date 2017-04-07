@@ -7,6 +7,7 @@ import models.Paciente;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import static play.libs.Json.toJson;
 public class ConsejoController extends Controller
 {
 
+    @Security.Authenticated(SecuredMedico.class)
     public Result create(Long idMedico,Long idPaciente)
     {
         Consejo consejo = Form.form(Consejo.class).bindFromRequest().get();

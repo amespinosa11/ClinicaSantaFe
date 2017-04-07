@@ -5,6 +5,8 @@ import models.MedicoEspecialista;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
+import views.html.loginMedicoEspecialista;
 
 import java.util.List;
 
@@ -47,6 +49,8 @@ public class MedicoEspecialistaController extends Controller
         medico.save();
         return ok(toJson(medico));
     }
+
+    @Security.Authenticated(SecuredMedicoEspecialista.class)
 
     public Result read() {
 
