@@ -54,7 +54,7 @@ public class Registro extends Model
 
     private Integer nivelActividadFisica;
 
-    @JsonBackReference
+
     private String codigoHash;
 
     @ManyToOne
