@@ -5,6 +5,7 @@ import models.Medico;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 import views.html.loginMedico;
 import views.html.loginPaciente;
 
@@ -44,6 +45,7 @@ public class MedicoController extends Controller
         return ok(toJson(medico));
     }
 
+    @Security.Authenticated(SecuredMedico.class)
     public Result read() {
 
         List<Medico> medicos = new Model.Finder(String.class, Medico.class).all();
@@ -57,6 +59,7 @@ public class MedicoController extends Controller
         return ok(toJson(medico));
     }
 
+    @Security.Authenticated(SecuredMedico.class)
     public Result update(Long pId)
     {
         Medico medico = Form.form(Medico.class).bindFromRequest().get();

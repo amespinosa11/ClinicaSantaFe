@@ -24,6 +24,8 @@ import models.*;
 
 import views.html.loginPaciente;
 
+import javax.annotation.CheckForSigned;
+
 
 /**
  * Created by am.espinosa11 on 12/02/2017.
@@ -46,6 +48,7 @@ public class PacienteController extends Controller
         } else {
             session().clear();
             session("emailPac", loginFormPaic.get().emailPac);
+            flash("Ingresa"+loginFormPaic.get().emailPac);
             return redirect(
                     routes.PacienteController.read()
             );
@@ -59,6 +62,7 @@ public class PacienteController extends Controller
         return ok(toJson(paciente));
     }
 
+    @Security.Authenticated(Secured.class)
     public Result agregarMedico(Long idMedico, Long idPaciente)
     {
         Paciente paciente = Paciente.find.byId(idPaciente);
@@ -69,6 +73,7 @@ public class PacienteController extends Controller
         return ok(toJson(paciente));
     }
 
+    @Security.Authenticated(Secured.class)
 
     //@Security.Authenticated(Secured.class)
     public Result read() {
@@ -77,6 +82,7 @@ public class PacienteController extends Controller
         return ok(toJson(pacientes));
     }
 
+    @Security.Authenticated(Secured.class)
     public Result delete(Long pId)
     {
         Paciente paciente = Paciente.find.byId(pId);
@@ -84,6 +90,7 @@ public class PacienteController extends Controller
         return ok(toJson(paciente));
     }
 
+    @Security.Authenticated(Secured.class)
     public Result update(Long pId)
     {
         Paciente paciente = Form.form(Paciente.class).bindFromRequest().get();
@@ -131,6 +138,7 @@ public class PacienteController extends Controller
         //return ok(toJson(registros));
     //}
 
+    @Security.Authenticated(Secured.class)
     public Result readRegistrosDePacienteRangoFechas(Long pId, Long f1, Long f2) {
         Paciente p = Paciente.find.byId(pId);
         List<Registro> registros = p.getRegistros();

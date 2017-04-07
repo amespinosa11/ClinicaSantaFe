@@ -4,6 +4,9 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index()
+#No autorizado
+GET     /                           controllers.HomeController.pagAlterna()
+
 # Login
 GET     /login                      controllers.HomeController.login()
 #Autenticarse

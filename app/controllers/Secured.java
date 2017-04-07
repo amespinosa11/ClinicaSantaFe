@@ -1,10 +1,11 @@
 package controllers;
 
 import models.Paciente;
+import play.data.Form;
 import play.mvc.Result;
 import play.mvc.Security;
 import play.mvc.Http.Context;
-
+import controllers.LoginFormDataPaciente;
 
 /**
  * Created by am.espinosa11 on 05/04/2017.
@@ -12,28 +13,16 @@ import play.mvc.Http.Context;
 public class Secured extends Security.Authenticator
 {
 
+    @Override
     public String getUsername(Context ctx) {
-        return ctx.session().get("email");
+        return ctx.session().get("emailPac");
     }
 
-
-    public Result onUnauthorized(Context context) {
-        return redirect(routes.HomeController.index());
-    }
-
-
-    public static String getUser(Context ctx) {
-        return ctx.session().get("email");
-    }
-
-
-    public static boolean isLoggedIn(Context ctx) {
-        return (getUser(ctx) != null);
-    }
-
-
-    public static Paciente getUserInfo(Context ctx)
+    @Override
+    public Result onUnauthorized(Context ctx)
     {
-        return (isLoggedIn(ctx) ? Paciente.findbyEmail.ref(getUser(ctx)) : null);
+        return redirect(routes.PacienteController.login());
     }
+
+
 }

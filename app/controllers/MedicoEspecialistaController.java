@@ -5,10 +5,17 @@ import models.MedicoEspecialista;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
+import views.html.loginMedicoEspecialista;
 
 import java.util.List;
 
 import static play.libs.Json.toJson;
+import views.html.loginMedico;
+import views.html.loginPaciente;
+import views.html.loginMedicoEspecialista;
+
+
 
 /**
  * Created by am.espinosa11 on 14/02/2017.
@@ -17,14 +24,23 @@ public class MedicoEspecialistaController extends Controller
 {
     public Result login()
     {
-        //TODO
-        return ok();
+        Form f = Form.form(LoginFormDataMedicoEspecialista.class);
+        return ok(loginMedicoEspecialista.render());
     }
 
     public Result authenticate()
     {
-        //TODO
-        return ok();
+        Form<LoginFormDataMedicoEspecialista> loginForm = Form.form(LoginFormDataMedicoEspecialista.class).bindFromRequest();
+
+        if (loginForm.hasErrors()) {
+            return badRequest(loginMedicoEspecialista.render());
+        } else {
+            session().clear();
+            session("emailMedEsp", loginForm.get().emailMedEsp);
+            return redirect(
+                    routes.MedicoEspecialistaController.read()
+            );
+        }
     }
 
     public Result create()
@@ -33,6 +49,8 @@ public class MedicoEspecialistaController extends Controller
         medico.save();
         return ok(toJson(medico));
     }
+
+    @Security.Authenticated(SecuredMedicoEspecialista.class)
 
     public Result read() {
 

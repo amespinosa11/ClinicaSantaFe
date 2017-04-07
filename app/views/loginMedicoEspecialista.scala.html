@@ -1,10 +1,10 @@
-@helper.form(routes.PacienteController.authenticar) {
+@helper.form(routes.MedicoEspecialistaController.authenticate) {
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Please log in Paciente</h3>
+                <h3 class="panel-title">Please log in Medico Especialista</h3>
             </div>
             <div class="panel-body">
 
@@ -12,7 +12,7 @@
                 <div class="form-group">
                     <label for="email" class="col-lg-2 control-label"> Email </label>
 
-                    <input type="email" class="form-control" id="email" name="emailPac" placeholder="Email">
+                    <input type="email" class="form-control" id="email" name="emailMedEsp" placeholder="Email">
 
                 </div>
 
@@ -21,7 +21,7 @@
                 <div class="form-group">
                     <label for="password" class="col-lg-2 control-label"> Password </label>
 
-                    <input type="password" class="form-control" id="password" name ="passwordPac" placeholder="Password">
+                    <input type="password" class="form-control" id="password" name ="passwordMedEsp" placeholder="Password">
 
 
                 </div>

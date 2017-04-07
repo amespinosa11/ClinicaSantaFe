@@ -7,6 +7,8 @@ import views.html.*;
 import views.html.helper.form;
 import play.data.*;
 
+import javax.annotation.CheckForSigned;
+
 /**
  * This controller contains an action to handle HTTP requests
  * to the application's home page.
@@ -19,8 +21,14 @@ public class HomeController extends Controller {
      * this method will be called when the application receives a
      * <code>GET</code> request with a path of <code>/</code>.
      */
+
     public Result index() {
         return ok(index.render("Home"));
+    }
+
+    public Result pagAlterna()
+    {
+        return ok(index.render("NO AUTORIZADO"));
     }
 
 
@@ -38,7 +46,7 @@ public class HomeController extends Controller {
             session().clear();
             session("email", loginForm.get().email);
             return redirect(
-                    routes.HomeController.index()
+                    routes.HomeController.login()
             );
         }
     }
