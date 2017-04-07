@@ -17,14 +17,23 @@ public class MedicoEspecialistaController extends Controller
 {
     public Result login()
     {
-        //TODO
-        return ok();
+        Form f = Form.form(LoginFormDataMedicoEspecialista.class);
+        return ok(loginMedicoEspecialista.render());
     }
 
     public Result authenticate()
     {
-        //TODO
-        return ok();
+        Form<LoginFormDataMedicoEspecialista> loginForm = Form.form(LoginFormDataMedicoEspecialista.class).bindFromRequest();
+
+        if (loginForm.hasErrors()) {
+            return badRequest(loginMedicoEspecialista.render());
+        } else {
+            session().clear();
+            session("emailMedEsp", loginForm.get().emailMedEsp);
+            return redirect(
+                    routes.MedicoEspecialistaController.read()
+            );
+        }
     }
 
     public Result create()

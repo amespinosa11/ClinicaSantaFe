@@ -31,6 +31,11 @@ public class MedicoEspecialista extends Model
 
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Marcapaso> marcapasos;
+
+    private String correo;
+
+    @JsonBackReference
+    private String contraseña;
     /**
      * Especialidad del Medico Especialista.
      */
@@ -72,6 +77,23 @@ public class MedicoEspecialista extends Model
     }
 
     public static Find<Long,MedicoEspecialista> find = new Find<Long,MedicoEspecialista>(){};
+
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
 
 
 }
