@@ -5,6 +5,8 @@ import models.Medico;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.loginMedico;
+import views.html.loginPaciente;
 
 import java.util.List;
 
@@ -15,6 +17,26 @@ import static play.libs.Json.toJson;
  */
 public class MedicoController extends Controller
 {
+    public Result login()
+    {
+        Form f = Form.form(LoginFormDataMedico.class);
+        return ok(loginMedico.render());
+    }
+
+    public Result authenticate() {
+        Form<LoginFormDataMedico> loginForm = Form.form(LoginFormDataMedico.class).bindFromRequest();
+
+        if (loginForm.hasErrors()) {
+            return badRequest(loginMedico.render());
+        } else {
+            session().clear();
+            session("emailMed", loginForm.get().emailMed);
+            return redirect(
+                    routes.MedicoController.read()
+            );
+        }
+    }
+
     public Result create()
     {
         Medico medico = Form.form(Medico.class).bindFromRequest().get();
@@ -42,6 +64,8 @@ public class MedicoController extends Controller
 
         pS.setApellido(medico.getApellido());
         pS.setNombre(medico.getNombre());
+        pS.setCorreo(medico.getCorreo());
+        pS.setContraseña(medico.getContraseña());
         pS.save();
 
         return ok(toJson(pS));

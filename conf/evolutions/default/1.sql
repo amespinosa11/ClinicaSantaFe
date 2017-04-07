@@ -42,6 +42,8 @@ create table medico (
   id                        bigserial not null,
   nombre                    varchar(255),
   apellido                  varchar(255),
+  correo                    varchar(255),
+  contraseña                varchar(255),
   constraint pk_medico primary key (id))
 ;
 

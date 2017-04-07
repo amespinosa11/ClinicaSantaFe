@@ -42,11 +42,17 @@ GET /paciente/:id           controllers.PacienteController.getById(id:Long)
 PUT /paciente/agregarMedico/:idMedico/:idPaciente controllers.PacienteController.agregarMedico(idMedico:Long,idPaciente:Long)
 
 ###########MEDICO##############################
+#Login Medico
+GET     /medico                          controllers.MedicoController.login()
+
+#Autenticarse Medico
+POST    /medico                      controllers.MedicoController.authenticate()
+
 #Crear Medico
-POST /medico                controllers.MedicoController.create()
+POST /clinica/medico                controllers.MedicoController.create()
 
 #Dar medicos
-GET /medico                controllers.MedicoController.read()
+GET /clinica/medico                controllers.MedicoController.read()
 
 #Eliminar medico
 DELETE /medico/:id          controllers.MedicoController.delete(id:Long)
@@ -58,11 +64,17 @@ PUT /medico/:id             controllers.MedicoController.update(id:Long)
 GET /medico/:id             controllers.MedicoController.getById(id:Long)
 
 ############MEDICOESPECIALISTA###################
+#Login Medico
+GET     /medicoEspecialista                          controllers.MedicoEspecialistaController.login()
+
+#Autenticarse Medico
+POST    /medicoEspecialista                      controllers.MedicoEspecialistaController.authenticate()
+
 #Crear Medico Especialista
-POST /medicoespecialista    controllers.MedicoEspecialistaController.create()
+POST /clinica/medicoespecialista    controllers.MedicoEspecialistaController.create()
 
 #Dar Medicos Especialistas
-GET /medicoespecialista        controllers.MedicoEspecialistaController.read()
+GET /clinica/medicoespecialista        controllers.MedicoEspecialistaController.read()
 
 #Eliminar Medico Especialista
 DELETE /medicoespecialista/:id  controllers.MedicoEspecialistaController.delete(id:Long)

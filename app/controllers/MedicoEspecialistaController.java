@@ -15,6 +15,18 @@ import static play.libs.Json.toJson;
  */
 public class MedicoEspecialistaController extends Controller
 {
+    public Result login()
+    {
+        //TODO
+        return ok();
+    }
+
+    public Result authenticate()
+    {
+        //TODO
+        return ok();
+    }
+
     public Result create()
     {
         MedicoEspecialista medico = Form.form(MedicoEspecialista.class).bindFromRequest().get();

@@ -31,6 +31,11 @@ public class Medico extends Model
      */
     private String apellido;
 
+    private String correo;
+
+    @JsonBackReference
+    private String contraseña;
+
     @OneToMany(mappedBy = "medico") @JsonBackReference
     private List<Consejo> consejos;
 
@@ -81,5 +86,21 @@ public class Medico extends Model
 
     public void setNotificacion(Notificacion notificaciones) {
         this.notificaciones.add(notificaciones);
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 }
