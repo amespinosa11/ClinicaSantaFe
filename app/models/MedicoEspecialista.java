@@ -4,6 +4,8 @@ import com.avaje.ebean.Model;
 
 import javax.persistence.*;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 /**
  * Created by am.espinosa11 on 13/02/2017.
