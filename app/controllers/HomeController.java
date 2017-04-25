@@ -23,7 +23,7 @@ public class HomeController extends Controller {
      */
 
     public Result index() {
-        return ok(index.render("Home"));
+        return ok(index.render(""));
     }
 
     public Result pagAlterna()
