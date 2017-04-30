@@ -29,7 +29,7 @@ public class TratamientoController extends Controller {
         return ok(toJson(tratamiento));
     }
 
-    @Security.Authenticated(Secured.class)
+//    @Security.Authenticated(Secured.class)
     public Result read(Long idPaciente) {
 
         Paciente p = Paciente.find.byId(idPaciente);
