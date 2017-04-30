@@ -22,6 +22,8 @@ import static play.libs.Json.toJson;
 
 import models.*;
 
+import views.html.index;
+import views.html.vistaGeneralPaciente;
 import views.html.loginPaciente;
 
 import javax.annotation.CheckForSigned;
@@ -33,6 +35,12 @@ import javax.annotation.CheckForSigned;
 //@With(Secure.class)
 public class PacienteController extends Controller
 {
+
+    public Result pagPrincial()
+    {
+        return ok(vistaGeneralPaciente.render(""));
+    }
+
 
     public Result login()
     {

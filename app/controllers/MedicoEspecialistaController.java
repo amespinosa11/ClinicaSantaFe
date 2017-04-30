@@ -6,13 +6,12 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
-import views.html.loginMedicoEspecialista;
+import views.html.*;
 
 import java.util.List;
 
 import static play.libs.Json.toJson;
-import views.html.loginMedico;
-import views.html.loginPaciente;
+
 import views.html.loginMedicoEspecialista;
 
 
@@ -22,6 +21,11 @@ import views.html.loginMedicoEspecialista;
  */
 public class MedicoEspecialistaController extends Controller
 {
+    public Result pagPrincipal()
+    {
+        return ok(vistaGeneralMedicoEspecialista.render(""));
+    }
+
     public Result login()
     {
         Form f = Form.form(LoginFormDataMedicoEspecialista.class);

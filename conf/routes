@@ -21,7 +21,11 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 #######PACIENTE############################
 #Login Paciente
-GET     /paciente                          controllers.PacienteController.login()
+GET     /pacientes                          controllers.PacienteController.pagPrincial()
+
+
+#Login Paciente
+GET     /pacienteLogin                          controllers.PacienteController.login()
 
 #Autenticarse Paciente
 POST    /paciente                      controllers.PacienteController.authenticar()
@@ -46,7 +50,10 @@ PUT /paciente/agregarMedico/:idMedico/:idPaciente controllers.PacienteController
 
 ###########MEDICO##############################
 #Login Medico
-GET     /medico                          controllers.MedicoController.login()
+GET     /medicos                          controllers.MedicoController.pagPrincipal()
+
+#Login Medico
+GET     /medicoLogin                          controllers.MedicoController.login()
 
 #Autenticarse Medico
 POST    /medico                      controllers.MedicoController.authenticate()
@@ -68,7 +75,10 @@ GET /medico/:id             controllers.MedicoController.getById(id:Long)
 
 ############MEDICOESPECIALISTA###################
 #Login Medico
-GET     /medicoEspecialista                          controllers.MedicoEspecialistaController.login()
+GET     /medicosEspecialistas                          controllers.MedicoEspecialistaController.pagPrincipal()
+
+#Login Medico
+GET     /medicoEspecialistaLogin                          controllers.MedicoEspecialistaController.login()
 
 #Autenticarse Medico
 POST    /medicoEspecialista                      controllers.MedicoEspecialistaController.authenticate()

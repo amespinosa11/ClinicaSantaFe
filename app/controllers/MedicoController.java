@@ -8,6 +8,7 @@ import play.mvc.Result;
 import play.mvc.Security;
 import views.html.loginMedico;
 import views.html.loginPaciente;
+import views.html.vistaGeneralMedico;
 
 import java.util.List;
 
@@ -18,6 +19,11 @@ import static play.libs.Json.toJson;
  */
 public class MedicoController extends Controller
 {
+    public Result pagPrincipal()
+    {
+        return ok(vistaGeneralMedico.render(""));
+    }
+
     public Result login()
     {
         Form f = Form.form(LoginFormDataMedico.class);
