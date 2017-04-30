@@ -73,7 +73,6 @@ public class PacienteController extends Controller
         return ok(toJson(paciente));
     }
 
-    @Security.Authenticated(Secured.class)
 
     //@Security.Authenticated(Secured.class)
     public Result read() {
