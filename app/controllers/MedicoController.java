@@ -8,6 +8,7 @@ import play.mvc.Result;
 import play.mvc.Security;
 import views.html.loginMedico;
 import views.html.loginPaciente;
+import views.html.medicosRegistrados;
 import views.html.vistaGeneralMedico;
 
 import java.util.List;
@@ -38,10 +39,13 @@ public class MedicoController extends Controller
         } else {
             session().clear();
             session("emailMed", loginForm.get().emailMed);
-            return redirect(
-                    routes.MedicoController.read()
-            );
+            return redirect(routes.MedicoController.registrados(loginForm.get().emailMed));
         }
+    }
+
+    public Result registrados(String email)
+    {
+        return ok(medicosRegistrados.render("email"));
     }
 
     public Result create()

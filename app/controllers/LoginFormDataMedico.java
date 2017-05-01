@@ -22,7 +22,22 @@ public class LoginFormDataMedico
 
     public String validate()
     {
-        if (emailMed.equals("carlos@hotmal.com")||passwordMed.equals("ana")) {
+        List<Medico> medicos = new Model.Finder(String.class, Medico.class).all();
+
+        int i = 0;
+        boolean si = false;
+        while(i<medicos.size())
+        {
+            if(medicos.get(i).getCorreo().equals(emailMed))
+            {
+
+                    si =true;
+
+            }
+            i++;
+        }
+        if(!si)
+        {
             return "Invalid user or password";
         }
         return null;

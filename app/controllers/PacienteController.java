@@ -26,6 +26,7 @@ import views.html.index;
 import views.html.vistaGeneralPaciente;
 import views.html.loginPaciente;
 import views.html.pacientesRegistrados;
+import views.html.*;
 
 import javax.annotation.CheckForSigned;
 
@@ -86,7 +87,19 @@ public class PacienteController extends Controller
     public Result read() {
 
         List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();
-        return ok(toJson(pacientes));
+        String d = "";
+        int i = 0;
+        while(i<pacientes.size())
+        {
+            d += " Nombre: " + pacientes.get(i).getNombre();
+            d += " Apellido: "+pacientes.get(i).getApellido();
+            d+= " Correo: "+pacientes.get(i).getCorreo();
+            d+= " Sexo: "+pacientes.get(i).getSexo();
+            d+= " Edad: "+pacientes.get(i).getEdad();
+            d+= " Estatura: "+ pacientes.get(i).getEstatura();
+            i++;
+        }
+        return ok(medicosVerPacientes.render(d));
     }
 
     @Security.Authenticated(Secured.class)

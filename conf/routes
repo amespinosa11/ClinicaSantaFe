@@ -50,6 +50,9 @@ PUT /paciente/agregarMedico/:idMedico/:idPaciente controllers.PacienteController
 
 ###########MEDICO##############################
 #Login Medico
+GET     /clinica/medicos                          controllers.MedicoController.registrados(email:String)
+
+#Login Medico
 GET     /medicos                          controllers.MedicoController.pagPrincipal()
 
 #Login Medico
@@ -74,6 +77,7 @@ PUT /medico/:id             controllers.MedicoController.update(id:Long)
 GET /medico/:id             controllers.MedicoController.getById(id:Long)
 
 ############MEDICOESPECIALISTA###################
+
 #Login Medico
 GET     /medicosEspecialistas                          controllers.MedicoEspecialistaController.pagPrincipal()
 
