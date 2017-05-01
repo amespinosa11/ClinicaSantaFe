@@ -91,6 +91,14 @@ public class RegistroController extends Controller
     }
 
 
+    public Result readID(Long idPaciente) {
+
+        //List<Registro> registros = new Model.Finder(String.class, Registro.class).all();
+        Paciente p = Paciente.find.byId(idPaciente);
+        List<Registro>registros = p.getRegistros();
+        return ok(toJson(registros));
+    }
+
     public Result read(String email) {
 
         //List<Registro> registros = new Model.Finder(String.class, Registro.class).all();

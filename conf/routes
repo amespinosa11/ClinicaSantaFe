@@ -39,6 +39,9 @@ POST /clinica/paciente                 controllers.PacienteController.create()
 #Dar pacientes
 GET /clinica/paciente                   controllers.PacienteController.read()
 
+#Dar pacientes
+GET /clinica/pacienteID                   controllers.PacienteController.readID()
+
 #Eliminar paciente
 DELETE /paciente/:id            controllers.PacienteController.delete(id:Long)
 
@@ -126,8 +129,11 @@ GET /urgencia/:id           controllers.UrgenciaController.getById(id:Long)
 #Crear Registro
 POST /paciente/registro/:idPaciente            controllers.RegistroController.create(idPaciente:Long)
 
-#Dar Resgistro
+#Dar Resgistros
 GET /paciente/registro/:email                controllers.RegistroController.read(email:String)
+
+#Dar Resgistros
+GET /paciente/registroID/:idPaciente                controllers.RegistroController.readID(idPaciente:Long)
 
 #Eliminar Registro
 
