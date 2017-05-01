@@ -102,6 +102,12 @@ public class PacienteController extends Controller
         return ok(medicosVerPacientes.render(d));
     }
 
+    public Result readID() {
+
+        List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();
+        return ok(toJson(pacientes));
+    }
+
     @Security.Authenticated(Secured.class)
     public Result delete(Long pId)
     {
