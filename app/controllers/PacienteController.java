@@ -25,6 +25,7 @@ import models.*;
 import views.html.index;
 import views.html.vistaGeneralPaciente;
 import views.html.loginPaciente;
+import views.html.pacientesRegistrados;
 
 import javax.annotation.CheckForSigned;
 
@@ -57,9 +58,8 @@ public class PacienteController extends Controller
             session().clear();
             session("emailPac", loginFormPaic.get().emailPac);
             flash("Ingresa"+loginFormPaic.get().emailPac);
-            return redirect(
-                    routes.PacienteController.read()
-            );
+            return ok(pacientesRegistrados.render(loginFormPaic.get().emailPac));
+
         }
     }
 

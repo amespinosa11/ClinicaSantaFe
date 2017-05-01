@@ -18,13 +18,29 @@ public class LoginFormDataPaciente {
      */
     public String passwordPac;
 
+    public Long id;
+
     public String validate()
     {
-        if (emailPac.equals("ana@hotmal.com")||passwordPac.equals("ana")) {
+        List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();
+        Paciente p = null;
+        int i = 0;
+        boolean si = false;
+        while(i<pacientes.size())
+        {
+            if(pacientes.get(i).getCorreo().equals(emailPac))
+            {
+                p= pacientes.get(i);
+                id = p.getId();
+            }
+            i++;
+        }
+        if(p == null)
+        {
             return "Invalid user or password";
         }
-        return null;
-
+        else
+            return null;
 
     }
 
@@ -49,6 +65,7 @@ public class LoginFormDataPaciente {
         {
             return "Invalid user or password";
         }
+        else
         return null;
 
     }

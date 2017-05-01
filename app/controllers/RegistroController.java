@@ -21,7 +21,7 @@ import java.util.List;
 import static play.libs.Json.newArray;
 import static play.libs.Json.newObject;
 import static play.libs.Json.toJson;
-
+import views.html.*;
 /**
  * Created by otalora on 12/02/2017.
  */
@@ -91,12 +91,30 @@ public class RegistroController extends Controller
     }
 
 
-    public Result read(Long idPaciente) {
+    public Result read(String email) {
 
         //List<Registro> registros = new Model.Finder(String.class, Registro.class).all();
-        Paciente p = Paciente.find.byId(idPaciente);
+        List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();
+
+        int i = 0;
+        Long id = 1L;
+        while(i<pacientes.size())
+        {
+            if(pacientes.get(i).getCorreo().equals(email))
+            {
+                id = pacientes.get(i).getId();
+            }
+            i++;
+        }
+        Paciente p = Paciente.find.byId(id);
         List<Registro>registros = p.getRegistros();
-        return ok(toJson(registros));
+        String d = "Frecuencia cardiaca: " + registros.get(0).getFrecuenciaCardiaca().toString() + "\n";
+        d += " Actividad fisica: "+ registros.get(0).getNivelActividadFisica() + "\n";
+        d += " Nivel Estres: "+ registros.get(0).getNivelEstres()+ "\n";
+        d += " Presión sanguinea: " + registros.get(0).getPresionSanguinea1()+" - "+registros.get(0).getPresionSanguinea2()+ "\n";
+        d += " Fecha: " + registros.get(0).getFechaExpedicion();
+       // return ok(toJson(registros));
+        return ok(pacientesRegistros.render(d));
     }
 
     public Result delete(Long pId)
