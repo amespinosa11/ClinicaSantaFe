@@ -19,6 +19,9 @@ GET     /message                    controllers.AsyncController.message()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
+#Proxy
+GET     /proxy                      controllers.Proxy.index(url)
+
 #######PACIENTE############################
 #Login Paciente
 GET     /pacientes                          controllers.PacienteController.pagPrincial()
