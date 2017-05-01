@@ -19,7 +19,7 @@ import static play.libs.Json.toJson;
 public class ConsejoController extends Controller
 {
 
-    @Security.Authenticated(SecuredMedico.class)
+//    @Security.Authenticated(SecuredMedico.class)
     public Result create(Long idMedico,Long idPaciente)
     {
         Consejo consejo = Form.form(Consejo.class).bindFromRequest().get();
