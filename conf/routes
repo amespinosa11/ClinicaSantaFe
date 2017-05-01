@@ -172,7 +172,10 @@ GET /paciente/:pid/registroRangoFechas/:f1/:f2      controllers.PacienteControll
 POST /paciente/diagnostico/:idPaciente           controllers.DiagnosticoController.create(idPaciente:Long)
 
 #Dar
-GET /paciente/diagnostico/:idPaciente               controllers.DiagnosticoController.read(idPaciente:Long)
+GET /paciente/diagnosticoID/:idPaciente               controllers.DiagnosticoController.readId(idPaciente:Long)
+
+#Dar
+GET /paciente/diagnostico/:email               controllers.DiagnosticoController.read(email:String)
 
 #Eliminar
 
@@ -220,7 +223,10 @@ GET /marcapaso/:id              controllers.MarcapasoController.getById(id:Long)
 POST /paciente/examen/:idPaciente    controllers.ExamenController.create(idPaciente:Long)
 
 #Dar Examenes de un paciente
-GET /paciente/examen/:idPaciente      controllers.ExamenController.read(idPaciente:Long)
+GET /paciente/examenID/:idPaciente      controllers.ExamenController.readId(idPaciente:Long)
+
+#Dar Examenes de un paciente
+GET /paciente/examen/:email      controllers.ExamenController.read(email:String)
 
 #Eliminar Examen
 

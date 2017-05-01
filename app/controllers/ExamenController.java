@@ -1,5 +1,6 @@
 package controllers;
 
+import com.avaje.ebean.Model;
 import models.Examen;
 import models.Paciente;
 import play.data.Form;
@@ -10,7 +11,7 @@ import play.mvc.Security;
 import java.util.List;
 
 import static play.libs.Json.toJson;
-
+import views.html.*;
 /**
  * Created by fa.lopez10 on 13/03/2017.
  */
@@ -29,11 +30,33 @@ public class ExamenController extends Controller {
     }
 
 //    @Security.Authenticated(Secured.class)
-    public Result read(Long idPaciente) {
+    public Result readId(Long idPaciente) {
 
         Paciente p = Paciente.find.byId(idPaciente);
         List<Examen> examenes = p.getExamenes();
         return ok(toJson(examenes));
+    }
+
+    public Result read(String email) {
+
+        List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();
+
+        int i = 0;
+        Long id = 1L;
+        while(i<pacientes.size())
+        {
+            if(pacientes.get(i).getCorreo().equals(email))
+            {
+                id = pacientes.get(i).getId();
+            }
+            i++;
+        }
+        Paciente p = Paciente.find.byId(id);
+        List<Examen> examenes = p.getExamenes();
+        String s = "Tipo: "+examenes.get(0).getTipo();
+        s+= " Resultados: "+examenes.get(0).getResultados();
+        s+= " Fecha: " + examenes.get(0).getFecha();
+        return ok(pacientesExamenes.render(s));
     }
 
     public Result delete(Long pId)

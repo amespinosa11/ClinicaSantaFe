@@ -12,7 +12,7 @@ import play.mvc.Security;
 import java.util.List;
 
 import static play.libs.Json.toJson;
-
+import views.html.*;
 /**
  * Created by am.espinosa11 on 15/02/2017.
  */
@@ -33,11 +33,32 @@ public class DiagnosticoController extends Controller
     }
 
 //    @Security.Authenticated(Secured.class)
-    public Result read(Long idPaciente) {
+    public Result readId(Long idPaciente) {
 
         Paciente p = Paciente.find.byId(idPaciente);
         List<Diagnostico>diagnosticos = p.getDiagnosticos();
         return ok(toJson(diagnosticos));
+    }
+
+    public Result read(String email) {
+
+        List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();
+
+        int i = 0;
+        Long id = 1L;
+        while(i<pacientes.size())
+        {
+            if(pacientes.get(i).getCorreo().equals(email))
+            {
+                id = pacientes.get(i).getId();
+            }
+            i++;
+        }
+        Paciente p = Paciente.find.byId(id);
+        List<Diagnostico>diagnosticos = p.getDiagnosticos();
+        String d = "Fecha: " + diagnosticos.get(0).getFecha().toString();
+        d+= "Descripción: " + diagnosticos.get(0).getDescripcion();
+        return ok(pacientesDiadnosticos.render(d));
     }
 
     public Result delete(Long pId)
