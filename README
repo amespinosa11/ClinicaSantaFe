@@ -4,6 +4,9 @@ Los documentos del análisis respectivo se encuentran en la carpeta "archivos"
 Registros del microcontrolador se realizan con: POST http://172.24.42.44:9000/paciente/registro/1
 Con un JSON que incluya los atributos del mismo (disponibles en clase Registro)
 
+Las aplicaciones cliente y medico se desarrollan en android studio. disponibles en:
+https://github.com/falopez10/androidClinicaSantafe
+
 
 
 
