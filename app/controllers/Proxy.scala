@@ -14,4 +14,5 @@ class Proxy extends Controller
   def index(url: String) = Action.async {
     WS.url(url).get().map(resp => Ok(resp.body).as("text/html"))
   }
+
 }
