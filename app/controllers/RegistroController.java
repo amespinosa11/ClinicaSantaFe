@@ -102,7 +102,7 @@ public class RegistroController extends Controller
     public Result read(String email) {
 
         //List<Registro> registros = new Model.Finder(String.class, Registro.class).all();
-        List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();
+        /*List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();
 
         int i = 0;
         Long id = 1L;
@@ -115,14 +115,28 @@ public class RegistroController extends Controller
             i++;
         }
         Paciente p = Paciente.find.byId(id);
-        List<Registro>registros = p.getRegistros();
-        String d = "Frecuencia cardiaca: " + registros.get(0).getFrecuenciaCardiaca().toString() + "\n";
-        d += " Actividad fisica: "+ registros.get(0).getNivelActividadFisica() + "\n";
-        d += " Nivel Estres: "+ registros.get(0).getNivelEstres()+ "\n";
-        d += " Presión sanguinea: " + registros.get(0).getPresionSanguinea1()+" - "+registros.get(0).getPresionSanguinea2()+ "\n";
-        d += " Fecha: " + registros.get(0).getFechaExpedicion();
+        */
+        List<Registro> registros = new Model.Finder(String.class, Registro.class).all();
+        //List<Tratamiento> tratamientos = p.getTratamientos();
+
+        List<String> array = new ArrayList<>();
+
+        for(int j = 0;j<registros.size();j++)
+        {
+            String d = "Frecuencia cardiaca: " + registros.get(j).getFrecuenciaCardiaca().toString() + "\n";
+            d += " Actividad fisica: "+ registros.get(j).getNivelActividadFisica() + "\n";
+            d += " Nivel Estres: "+ registros.get(j).getNivelEstres()+ "\n";
+            d += " Presión sanguinea: " + registros.get(j).getPresionSanguinea1()+" - "+registros.get(j).getPresionSanguinea2()+ "\n";
+            d += " Fecha: " + registros.get(j).getFechaExpedicion();
+            d += " Color: " + registros.get(j).getColor(1L);
+
+            array.add(d);
+        }
+
+        //List<Registro>registros = p.getRegistros();
+
        // return ok(toJson(registros));
-        return ok(pacientesRegistros.render(d));
+        return ok(pacientesRegistros.render(array));
     }
 
     public Result delete(Long pId)

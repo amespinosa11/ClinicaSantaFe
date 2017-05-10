@@ -22,6 +22,15 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 #Proxy
 GET     /proxy                      controllers.Proxy.index(url)
 
+#Nosotros
+GET     /nosotros                      controllers.HomeController.nosotros()
+
+#Nosotros
+GET     /nuestrosServicios                      controllers.HomeController.servicios()
+
+#Nosotros
+GET     /nuestrosMedicos                      controllers.HomeController.nuestrosMedicos()
+
 #######PACIENTE############################
 #Login Paciente
 GET     /pacientes                          controllers.PacienteController.pagPrincial()
@@ -30,14 +39,20 @@ GET     /pacientes                          controllers.PacienteController.pagPr
 #Login Paciente
 GET     /pacienteLogin                          controllers.PacienteController.login()
 
+#Registro Paciente
+GET     /pacienteRegistro                          controllers.PacienteController.registro()
+
 #Autenticarse Paciente
 POST    /paciente                      controllers.PacienteController.authenticar()
 
 #Crear Paciente
-POST /clinica/paciente                 controllers.PacienteController.create()
+POST /clinica/pacienteNuevo                 controllers.PacienteController.create()
 
 #Dar pacientes
 GET /clinica/paciente                   controllers.PacienteController.read()
+
+#Dar pacientes
+GET /clinica/paciente/medEs                   controllers.PacienteController.read2()
 
 #Dar pacientes
 GET /clinica/pacienteID                   controllers.PacienteController.readID()
@@ -61,6 +76,9 @@ GET     /clinica/medicos                          controllers.MedicoController.r
 #Login Medico
 GET     /medicos                          controllers.MedicoController.pagPrincipal()
 
+#Registro Paciente
+GET     /medicoRegistro                          controllers.MedicoController.registro()
+
 #Login Medico
 GET     /medicoLogin                          controllers.MedicoController.login()
 
@@ -72,6 +90,11 @@ POST /clinica/medico                controllers.MedicoController.create()
 
 #Dar medicos
 GET /clinica/medico                controllers.MedicoController.read()
+
+#Dar medicos
+GET /clinica/medico/notificaciones/:email                controllers.MedicoController.darNotificaciones(email:String)
+
+
 
 #Eliminar medico
 DELETE /medico/:id          controllers.MedicoController.delete(id:Long)
@@ -89,6 +112,9 @@ GET     /medicosEspecialistas                          controllers.MedicoEspecia
 
 #Login Medico
 GET     /medicoEspecialistaLogin                          controllers.MedicoEspecialistaController.login()
+
+#Registro Paciente
+GET     /medicoERegistro                          controllers.MedicoEspecialistaController.registro()
 
 #Autenticarse Medico
 POST    /medicoEspecialista                      controllers.MedicoEspecialistaController.authenticate()

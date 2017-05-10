@@ -2,6 +2,7 @@ package controllers;
 
 import com.avaje.ebean.Model;
 import models.Medico;
+import models.Registro;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -10,7 +11,9 @@ import views.html.loginMedico;
 import views.html.loginPaciente;
 import views.html.medicosRegistrados;
 import views.html.vistaGeneralMedico;
+import views.html.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static play.libs.Json.toJson;
@@ -31,6 +34,12 @@ public class MedicoController extends Controller
         return ok(loginMedico.render());
     }
 
+    public Result registro()
+    {
+        Form f = Form.form(Medico.class);
+        return ok(medicosRegistrarse.render());
+    }
+
     public Result authenticate() {
         Form<LoginFormDataMedico> loginForm = Form.form(LoginFormDataMedico.class).bindFromRequest();
 
@@ -39,7 +48,7 @@ public class MedicoController extends Controller
         } else {
             session().clear();
             session("emailMed", loginForm.get().emailMed);
-            return redirect(routes.MedicoController.registrados(loginForm.get().emailMed));
+            return ok(medicosRegistrados.render(loginForm.get().emailMed));
         }
     }
 
@@ -50,9 +59,13 @@ public class MedicoController extends Controller
 
     public Result create()
     {
-        Medico medico = Form.form(Medico.class).bindFromRequest().get();
+        Form<FormRegistroMedico> formDataPacienteForm = Form.form(FormRegistroMedico.class).bindFromRequest();
+
+        Medico medico = new Medico(formDataPacienteForm.get().nombreMedico,formDataPacienteForm.get().apellidoMedico);
+        medico.setCorreo(formDataPacienteForm.get().correoMedico);
+        medico.setContraseña(formDataPacienteForm.get().contraseñaMedico);
         medico.save();
-        return ok(toJson(medico));
+        return ok(medicosRegistrados.render(medico.getCorreo()));
     }
 
     @Security.Authenticated(SecuredMedico.class)
@@ -67,6 +80,31 @@ public class MedicoController extends Controller
         Medico medico = Medico.find.byId(pId);
         medico.delete();
         return ok(toJson(medico));
+    }
+
+    public Result darNotificaciones(String email)
+    {
+        List<Registro> registros = new Model.Finder(String.class, Registro.class).all();
+        //List<Tratamiento> tratamientos = p.getTratamientos();
+
+        List<String> array = new ArrayList<>();
+
+        for(int j = 0;j<registros.size();j++)
+        {
+            String d = "Frecuencia cardiaca: " + registros.get(j).getFrecuenciaCardiaca().toString() + "\n";
+            d += " Actividad fisica: "+ registros.get(j).getNivelActividadFisica() + "\n";
+            d += " Nivel Estres: "+ registros.get(j).getNivelEstres()+ "\n";
+            d += " Presión sanguinea: " + registros.get(j).getPresionSanguinea1()+" - "+registros.get(j).getPresionSanguinea2()+ "\n";
+            d += " Fecha: " + registros.get(j).getFechaExpedicion();
+            d += " Color: " + registros.get(j).getColor(1L);
+
+            array.add(d);
+        }
+
+        //List<Registro>registros = p.getRegistros();
+
+        // return ok(toJson(registros));
+        return ok(Notificaciones.render(array));
     }
 
     @Security.Authenticated(SecuredMedico.class)

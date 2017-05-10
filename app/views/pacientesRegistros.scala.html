@@ -1,4 +1,4 @@
-@(message: String)
+@(message: List[String])
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -60,16 +60,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand"  href="/login">Inicio</a>
+                <a class="navbar-brand"  href="/">Inicio</a>
             </div>
 
             <!-- Agrupar los enlaces de navegación, los formularios y cualquier
                  otro elemento que se pueda ocultar al minimizar la barra -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Nosotros</a></li>
-                    <li><a  href="#">Nuestros Servicios</a></li>
-                    <li><a  href="#">Nuestros Medicos</a></li>
+                    <li><a href="/nosotros">Nosotros</a></li>
+                    <li><a  href="/nuestrosServicios">Nuestros Servicios</a></li>
+                    <li><a  href="/nuestrosMedicos">Nuestros Medicos</a></li>
                 </ul>
                 </li>
                 </ul>
@@ -125,17 +125,80 @@
     </div>
 
 
+
     <div class="container">
         <br>
         <br>
         <h3 style="color: #323385;">Registros</h3>
+
+        <div class="col-md-4">
+            <h4>Buscar por rango de fechas</h4>
+        </div>
+        <div class="col-md-4">
+            <div class="container">
+                <div class="container">
+                    <div class="row">
+                        <div class='col-sm-4'>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="container">
+                <div class="container">
+                    <div class="row">
+                        <div class='col-sm-4'>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker2'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker2').datetimepicker();
+            });
+        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
         <br>
         <br>
         <br>
         <div  class="panel panel-default">
 
-                <h3 style="color: #323385;">@message</h3>
-            <h3 style="color: #323385;">@message</h3>
+                <h3 style="color: #323385;">@message(0)</h3>
+
+
+        </div>
+        <div  class="panel panel-default">
+
+
+            <h3 style="color: #323385;">@message(1)</h3>
+
+        </div>
+        <div  class="panel panel-default">
+
+
+            <h3 style="color: #323385;">@message(1)</h3>
 
         </div>
     </div>

@@ -10,6 +10,7 @@ import play.mvc.Result;
 import play.mvc.Security;
 import views.html.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static play.libs.Json.toJson;
@@ -41,7 +42,7 @@ public class TratamientoController extends Controller {
 
     public Result read(String email) {
 
-        List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();
+        /*List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();
 
         int i = 0;
         Long id = 1L;
@@ -54,14 +55,27 @@ public class TratamientoController extends Controller {
             i++;
         }
         Paciente p = Paciente.find.byId(id);
-        List<Tratamiento> tratamientos = p.getTratamientos();
-        String nuevalinea = System.getProperty("line.separator");
-        String d = "Fecha Inicio: "+tratamientos.get(0).getFechaInicio().toString();
-        d += nuevalinea;
-        d += " Descripción: "+tratamientos.get(0).getDescripcion();
-        d += nuevalinea;
-        d += " Fecha Fin: "+tratamientos.get(0).getFechaFin();
-        return ok(pacientesTratamientos.render(d));
+        */
+        List<Tratamiento> tratamientos = new Model.Finder(String.class, Tratamiento.class).all();
+        //List<Tratamiento> tratamientos = p.getTratamientos();
+
+        List<String> array = new ArrayList<>();
+
+        for(int j = 0;j<tratamientos.size();j++)
+        {
+            String d = "";
+
+            d = " Fecha Inicio: "+tratamientos.get(j).getFechaInicio().toString();
+
+            d += " Descripción: "+tratamientos.get(j).getDescripcion();
+
+            d += " Fecha Fin: "+tratamientos.get(j).getFechaFin();
+
+            array.add(d);
+        }
+
+        array.add("Ana");
+        return ok(pacientesTratamientos.render(array));
     }
 
     public Result delete(Long pId)

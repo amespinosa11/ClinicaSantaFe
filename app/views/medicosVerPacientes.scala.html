@@ -1,4 +1,4 @@
-@(message: String)
+@(message: List[String])
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -60,16 +60,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand"  href="/login">Inicio</a>
+                <a class="navbar-brand"  href="/">Inicio</a>
             </div>
 
             <!-- Agrupar los enlaces de navegación, los formularios y cualquier
                  otro elemento que se pueda ocultar al minimizar la barra -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Nosotros</a></li>
-                    <li><a  href="#">Nuestros Servicios</a></li>
-                    <li><a  href="#">Nuestros Medicos</a></li>
+                    <li><a href="/nosotros">Nosotros</a></li>
+                    <li><a  href="/nuestrosServicios">Nuestros Servicios</a></li>
+                    <li><a  href="/nuestrosMedicos">Nuestros Medicos</a></li>
                 </ul>
                 </li>
                 </ul>
@@ -87,7 +87,7 @@
 
     <div class="container">
         <div class="col-md-3">
-            <h3 style="color: #323385;">Bienvenido</h3>
+
 
 
         </div>
@@ -131,12 +131,67 @@
         <h3 style="color: #323385;">Pacientes</h3>
         <br>
         <br>
-        <div  class="panel panel-default">
-            <h3 style="color: #323385;">@message</h3>
+        <div class="col-md-7">
+            <h3 style="color: #323385;">@message(1)</h3>
         </div>
+        <div class="col-md-5">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Menú</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ><a href="/paciente/tratamiento/@message(0)">Tratamientos</a></li>
+                        <li><a href="/paciente/registro/@message(0) ">Mediciones</a></li>
+                        <li><a href="/paciente/diagnostico/@message(0)">Diagnosticos</a></li>
+                        <li><a href="/paciente/examen/@message(0)">Examenes</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
 
+    <div class="container">
+        <br>
+        <br>
+
+        <div class="col-md-7">
+            <h3 style="color: #323385;">@message(3)</h3>
+        </div>
+        <div class="col-md-5">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Menú</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ><a href="/paciente/tratamiento/@message(2)">Tratamientos</a></li>
+                        <li><a href="/paciente/registro/@message(2) ">Mediciones</a></li>
+                        <li><a href="/paciente/diagnostico/@message(2)">Diagnosticos</a></li>
+                        <li><a href="/paciente/examen/@message(2)">Examenes</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div  class="panel panel-default">
+        </div>
+    </div>
 
     <div class="container">
         <div class="col-md-4">

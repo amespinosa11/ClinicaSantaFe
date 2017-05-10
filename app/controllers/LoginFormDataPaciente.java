@@ -22,25 +22,14 @@ public class LoginFormDataPaciente {
 
     public String validate()
     {
-        List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();
-        Paciente p = null;
-        int i = 0;
-        boolean si = false;
-        while(i<pacientes.size())
-        {
-            if(pacientes.get(i).getCorreo().equals(emailPac))
-            {
-                p= pacientes.get(i);
-                id = p.getId();
-            }
-            i++;
-        }
-        if(p == null)
-        {
-            return "Invalid user or password";
-        }
-        else
-            return null;
+       if(emailPac.equals("ana"))
+       {
+           return "Mal";
+       }
+       else
+       {
+           return null;
+       }
 
     }
 

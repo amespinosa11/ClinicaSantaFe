@@ -26,6 +26,18 @@ public class HomeController extends Controller {
         return ok(index.render(""));
     }
 
+    public Result nosotros() {
+        return ok(nosotros.render(""));
+    }
+
+    public Result servicios() {
+        return ok(nuestrosServicios.render(""));
+    }
+
+    public Result nuestrosMedicos() {
+        return ok(nuestrosMedicos.render(""));
+    }
+
     public Result pagAlterna()
     {
         return ok(index.render("NO AUTORIZADO"));

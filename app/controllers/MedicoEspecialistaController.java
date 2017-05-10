@@ -1,6 +1,7 @@
 package controllers;
 
 import com.avaje.ebean.Model;
+import models.Medico;
 import models.MedicoEspecialista;
 import play.data.Form;
 import play.mvc.Controller;
@@ -32,6 +33,12 @@ public class MedicoEspecialistaController extends Controller
         return ok(loginMedicoEspecialista.render());
     }
 
+    public Result registro()
+    {
+        Form f = Form.form(MedicoEspecialista.class);
+        return ok(medicosEspecialistasRegistrarse.render());
+    }
+
     public Result authenticate()
     {
         Form<LoginFormDataMedicoEspecialista> loginForm = Form.form(LoginFormDataMedicoEspecialista.class).bindFromRequest();
@@ -41,17 +48,20 @@ public class MedicoEspecialistaController extends Controller
         } else {
             session().clear();
             session("emailMedEsp", loginForm.get().emailMedEsp);
-            return redirect(
-                    routes.MedicoEspecialistaController.read()
-            );
+            return ok(medicosEspecialistasRegistrados.render(loginForm.get().emailMedEsp));
         }
     }
 
     public Result create()
     {
-        MedicoEspecialista medico = Form.form(MedicoEspecialista.class).bindFromRequest().get();
+        Form<FormRegistroMedicoEspecialista> formDataPacienteForm = Form.form(FormRegistroMedicoEspecialista.class).bindFromRequest();
+
+        MedicoEspecialista medico = new MedicoEspecialista(formDataPacienteForm.get().nombreMedicoEspecialista,formDataPacienteForm.get().apellidoMedicoEspecialista,formDataPacienteForm.get().especialidadMedicoEspecialista);
+        medico.setCorreo(formDataPacienteForm.get().correoMedicoEspecialista);
+        medico.setContraseña(formDataPacienteForm.get().contraseñaMedicoEspecialista);
+
         medico.save();
-        return ok(toJson(medico));
+        return ok(medicosEspecialistasRegistrados.render(medico.getCorreo()));
     }
 
     @Security.Authenticated(SecuredMedicoEspecialista.class)

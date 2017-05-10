@@ -1,0 +1,161 @@
+@(message: String)
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<meta charset="utf-8">
+<head>
+
+
+    <title>Clinica Santa Fe</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+    <link href="css/my-styles.css" rel="stylesheet" media="screen">
+
+</head>
+
+<body>
+
+
+<div class="page-header">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+                <span><img src="@routes.Assets.versioned("images/logoTelefono.png")" class="img-responsive" alt="Imagen responsive" width="50" height="50"></span>
+
+            </div>
+
+            <div class="col-md-2">
+                <a href="tel://666777888">428 41 98</a>
+                <br>
+                <a href="tel://666777888">428 34 99</a>
+            </div>
+            <div class="col-md-6">
+                <span><img src="@routes.Assets.versioned("images/logo2.png")" class="img-responsive" alt="Imagen responsive"></span>
+            </div>
+
+            <div class="col-md-1">
+                <span><img src="@routes.Assets.versioned("images/logoMensaje.png")" class="img-responsive" alt="Imagen responsive" width="50" height="50"></span>
+
+            </div>
+
+            <div class="col-md-2">
+                <br>
+                <a href="https://github.com/amespinosa11/ClinicaSantaFe/wiki">Contáctenos</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+
+    <nav class="navbar navbar-inverse"  role="navigation">
+        <!-- El logotipo y el icono que despliega el menú se agrupan
+             para mostrarlos mejor en los dispositivos móviles -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Desplegar navegación</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand"  href="/">Inicio</a>
+        </div>
+
+        <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+             otro elemento que se pueda ocultar al minimizar la barra -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/nosotros">Nosotros</a></li>
+                <li><a  href="/nuestrosServicios">Nuestros Servicios</a></li>
+                <li><a  href="/nuestrosMedicos">Nuestros Medicos</a></li>
+            </ul>
+            </li>
+            </ul>
+
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Buscar">
+                </div>
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span>Enviar
+                </button>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" >Contáctenos</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Servicios <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/medicos">Medico General</a></li>
+                        <li><a href="/medicosEspecialistas">Medico Especialista</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/pacientes">Pacientes</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+
+<div class="container">
+    <h2 style="color: #2980B9 ;">NOSOTROS</h2>
+    <h4 style="color: #2980B9 ;">Somos una organización creada hace 30 años con el objetivo de brindarle el mejor servicio.</h4>
+</div>
+
+
+<div class="container">
+    <div  class="panel panel-default">
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-5">
+        <h2 style="color: #323385;">DONDE ENCONTRARNOS</h2>
+    </div>
+    <div class="col-md-3">
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+
+<div class="container" >
+    <div class="col-md-3">
+        <span><img src="@routes.Assets.versioned("images/logoTelefono2.png")" class="img-responsive" alt="Imagen responsive" width="75" height="75"></span>
+        <br>
+        <a href="tel://666777888">428 41 98</a>
+    </div>
+
+    <div class="col-md-6">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.429781671287!2d-74.03555128597971!3d4.695146843014815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9aa62e71d839%3A0xe0729140bb4101d2!2sCl%C3%ADnica+Santa+Fe!5e0!3m2!1ses!2ses!4v1493342138759" width="500" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+    </div>
+
+    <div class="col-md-3">
+        <div class="container">
+            <span><img src="@routes.Assets.versioned("images/logoMensaje2.png")" class="img-responsive" alt="Imagen responsive" width="75" height="75"></span>
+            <br>
+            <a href="https://github.com/amespinosa11/ClinicaSantaFe/wiki">Contáctenos</a>
+        </div>
+    </div>
+</div>
+
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>

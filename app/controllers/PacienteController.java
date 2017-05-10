@@ -50,6 +50,12 @@ public class PacienteController extends Controller
         return ok(loginPaciente.render());
     }
 
+    public Result registro()
+    {
+        Form f = Form.form(Paciente.class);
+        return ok(pacientesRegistrarse.render());
+    }
+
     public Result authenticar() {
         Form<LoginFormDataPaciente> loginFormPaic = Form.form(LoginFormDataPaciente.class).bindFromRequest();
 
@@ -66,9 +72,13 @@ public class PacienteController extends Controller
 
     public Result create()
     {
-        Paciente paciente = Form.form(Paciente.class).bindFromRequest().get();
+        Form<FormRegistroPaciente> formDataPacienteForm = Form.form(FormRegistroPaciente.class).bindFromRequest();
+
+        Paciente paciente = new Paciente(formDataPacienteForm.get().nombrePaciente,formDataPacienteForm.get().apellidoPaciente,formDataPacienteForm.get().correoPaciente,formDataPacienteForm.get().edadPaciente,formDataPacienteForm.get().pesoPaciente,formDataPacienteForm.get().estaturaPaciente,formDataPacienteForm.get().sexoPaciente);
+        paciente.setContraseñaNueva(formDataPacienteForm.get().contraseñaPaciente);
         paciente.save();
-        return ok(toJson(paciente));
+        return ok(pacientesRegistrados.render(paciente.getCorreo()));
+
     }
 
     //@Security.Authenticated(Secured.class)
@@ -87,19 +97,43 @@ public class PacienteController extends Controller
     public Result read() {
 
         List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();
-        String d = "";
+
         int i = 0;
+        List<String> array = new ArrayList<>();
         while(i<pacientes.size())
         {
-            d += " Nombre: " + pacientes.get(i).getNombre();
-            d += " Apellido: "+pacientes.get(i).getApellido();
-            d+= " Correo: "+pacientes.get(i).getCorreo();
-            d+= " Sexo: "+pacientes.get(i).getSexo();
-            d+= " Edad: "+pacientes.get(i).getEdad();
-            d+= " Estatura: "+ pacientes.get(i).getEstatura();
+            String correo = "";
+            String nombre = "";
+            nombre +=  pacientes.get(i).getNombre();
+            nombre += " "+pacientes.get(i).getApellido();
+            correo += pacientes.get(i).getCorreo();
+            array.add(correo);
+            array.add(nombre);
             i++;
         }
-        return ok(medicosVerPacientes.render(d));
+
+        return ok(medicosVerPacientes.render(array));
+    }
+
+    public Result read2() {
+
+        List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();
+
+        int i = 0;
+        List<String> array = new ArrayList<>();
+        while(i<pacientes.size())
+        {
+            String correo = "";
+            String nombre = "";
+            nombre +=  pacientes.get(i).getNombre();
+            nombre += " "+pacientes.get(i).getApellido();
+            correo += pacientes.get(i).getCorreo();
+            array.add(correo);
+            array.add(nombre);
+            i++;
+        }
+
+        return ok(medicosEspecialistasVerPaciente.render(array));
     }
 
     public Result readID() {

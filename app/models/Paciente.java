@@ -178,6 +178,11 @@ public class Paciente extends Model
         return max;
     }
 
+    public void setContraseñaNueva(String contraseña)
+    {
+        this.contraseña = contraseña;
+    }
+
     public void setContraseña(String contraseñaAntigua, String contsNueva)
     {
         if(this.contraseña.equals(contraseñaAntigua))

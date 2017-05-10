@@ -4,11 +4,13 @@ import com.avaje.ebean.Model;
 import models.Diagnostico;
 import models.Medico;
 import models.Paciente;
+import models.Tratamiento;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static play.libs.Json.toJson;
@@ -42,7 +44,7 @@ public class DiagnosticoController extends Controller
 
     public Result read(String email) {
 
-        List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();
+        /*List<Paciente> pacientes = new Model.Finder(String.class, Paciente.class).all();
 
         int i = 0;
         Long id = 1L;
@@ -55,10 +57,23 @@ public class DiagnosticoController extends Controller
             i++;
         }
         Paciente p = Paciente.find.byId(id);
-        List<Diagnostico>diagnosticos = p.getDiagnosticos();
-        String d = "Fecha: " + diagnosticos.get(0).getFecha().toString();
-        d+= "Descripción: " + diagnosticos.get(0).getDescripcion();
-        return ok(pacientesDiadnosticos.render(d));
+        */
+        List<Diagnostico> diagnosticos = new Model.Finder(String.class, Diagnostico.class).all();
+        //List<Tratamiento> tratamientos = p.getTratamientos();
+
+        List<String> array = new ArrayList<>();
+
+        for(int j = 0;j<diagnosticos.size();j++)
+        {
+            String d = "Fecha: " + diagnosticos.get(j).getFecha();
+
+            d+= "Descripción: " + diagnosticos.get(j).getDescripcion();
+
+            array.add(d);
+        }
+        //List<Diagnostico>diagnosticos = p.getDiagnosticos();
+
+        return ok(pacientesDiadnosticos.render(array));
     }
 
     public Result delete(Long pId)
